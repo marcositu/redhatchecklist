@@ -16,3 +16,7 @@ Procedimiento de uso
 - vendor
 - demo.css
 - sprite.png
+
+Más información
+====================
+Para mayor información visitar la wiki: https://github.com/marcositu/redhatchecklist/wiki

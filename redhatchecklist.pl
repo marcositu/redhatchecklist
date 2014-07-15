@@ -2,6 +2,10 @@
  no warnings;
  use File::Find ();
  use Digest::MD5;
+ 
+## Muchas gracias a perl en español por la ayuda
+## Si alguien quieren ayudarme a optimizar el codigo o "programar" como se debe es bienvenido.
+
 ##
 ## Se debe modificar la palabra que busca en la seccion del BANNER por el que usted quiera.
 ## 
@@ -39,7 +43,7 @@ print F "<script src=\"src/jquery.collapse_storage.js\"></script>\n";
 print F "<script src=\"src/jquery.collapse_cookie_storage.js\"></script>\n";
 print F "</head>\n";
 print F "<body>\n";
-print F "<h1>An&aacute;lisis de seguridad</h1>";
+print F "<h1>An&aacute;lisis de seguridad - Informe</h1>";
 print F "<p>Cabe aclarar que si algunos items estan vacios significa que la configuraci&oacute;n esta correcta. <a href=\"$Hostname-$dia-recomendaciones.html\"><button type=\"button\" class=\"button-warning pure-button\">Recomendaciones</button></a></p>";
 print F "<div id=\"css3-animated-example\">\n";
 
@@ -1870,6 +1874,49 @@ print F "</div>\n";
 
 print R "</div>\n";
 print R "</div>\n";
+
+
+# ----------------------------------------------------------------------------------------
+# Fase 18.0 -- Verificar el nivel de inittab
+# ----------------------------------------------------------------------------------------
+
+print "-" x 100;
+print " \nFase 18.0 -- Verificar el nivel de inittab\n";
+print F "  <h3>Fase 18.0 -- Verificar el nivel de inittab</h3>\n";
+print F "<div>\n";
+print F "<div class=\"content\">\n";
+
+print R "  <h3>Fase 18.0 -- Verificar el nivel de inittab</h3>\n";
+print R "<div>\n";
+print R "<div class=\"content\">\n";
+
+print "-" x 100;
+
+$REDCHECK=`grep ':initdefault' /etc/inittab | cut -d: -f2 &> /tmp/initcheck_check.txt`;
+
+
+# Leer un fichero de texto
+my $filename = '/tmp/initcheck_check.txt';
+open INFILE,$filename;
+my $linea;
+while ( $linea = <INFILE>) {
+    chomp($linea); 
+	if ($linea != 3){
+	print F "<p class=\"negativo\">Negativo: El valor $linea del par&aacute;metro initdefault es incorrecto</p>\n";
+	print R"<p>Se recomienda configurar el valor 3 sobre el par&aacute;metro initdefault</p>\n";
+
+	}
+} 
+close INFILE;
+
+unlink '/tmp/initcheck_check.txt';		
+
+print F "</div>\n";
+print F "</div>\n";
+
+print R "</div>\n";
+print R "</div>\n";
+
 
 print F "
  <script>

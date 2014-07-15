@@ -6,7 +6,7 @@ El script tiene como objetivo realizar una evaluación sobre un Sistema RedHat o
 Procedimiento de uso
 ====================
 
-1) Modificar la linea "1262" donde se encuentra la variable "$bannerpersona" por algun string que se encuentra en el banner personalizado de la Compañia.
+1) Modificar la linea "1266" donde se encuentra la variable "$bannerpersona" por algun string que se encuentra en el banner personalizado de la Compañia.
 
 2) Debemos ejecutar el script en el servidor a analizar, se debe tener permisos de root en el mismo.
 [server]# perl redhatchecklist.pl

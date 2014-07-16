@@ -1882,11 +1882,11 @@ print R "</div>\n";
 
 print "-" x 100;
 print " \nFase 17.2 -- Verificacion configuración sysctl\n";
-print F "  <h3>Fase 17.2 -- Verificacion configuración sysctl</h3>\n";
+print F "  <h3>Fase 17.2 -- Verificacion configuraci&oacute;n sysctl</h3>\n";
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 17.2 -- Verificacion configuración sysctl</h3>\n";
+print R "  <h3>Fase 17.2 -- Verificacion configuraci&oacute;n sysctl</h3>\n";
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 

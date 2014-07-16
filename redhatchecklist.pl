@@ -126,7 +126,7 @@ while (<USER>) {
        ($linea)=split(/\n/,$_,1); (@userdata)=split(/:/,$linea);
        $gid=$userdata[2];
        $username=$userdata[0];
-print BOLD, WHITE, "Informacion:", RESET . " Usuario: $username\n";
+print BOLD, WHITE, "\nInformacion:", RESET . " Usuario: $username\n";
 print F"<p>$username</p>\n";
 }
 
@@ -201,7 +201,7 @@ for my $uid ( keys %usuarios ) {
         #print "\tGrupo: $gid, $grupos{$gid}->[0]\n";
 
         if ($gid < 500) {
-        	 print BOLD, WHITE, "Informacion:", RESET . " El usuario $nombre pertenece al grupo $grupos{$gid}->[0] ($gid)\n";
+        	 print BOLD, WHITE, "\nInformacion:", RESET . " El usuario $nombre pertenece al grupo $grupos{$gid}->[0] ($gid)\n";
              print F "<p>El usuario $nombre pertenece al grupo $grupos{$gid}->[0] ($gid)\n</p>\n";
 
         }
@@ -238,7 +238,7 @@ while (<SINPASSWD>) {
        $user=$userdata[0];
        $passwd=$userdata[1];
         if ($passwd eq "" || $passwd eq "NP") {
-        print BOLD, RED, "Negativo:", RESET . " El usuario $user no tiene una contraseña asignada\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El usuario $user no tiene una contraseña asignada\n";
         print F "<p class=\"negativo\">El usuario $user no tiene una contrase&ntilde;a asignada</p>\n";
 		print R "<p>El usuario $user no tiene una contrase&ntilde;a asignada. Recomendamos que se le asigne una contrase&ntilde;a al usuario.</p>\n";
         }
@@ -277,7 +277,7 @@ while (<ID0PASSWD>) {
 	   if ($user ne "root")
 	   {
 			if ($id0 == 0) {
-				print "Negativo: El usuario $user  tiene definido ID 0\n";
+				print BOLD, RED, "\nNegativo:", RESET . " Negativo: El usuario $user  tiene definido ID 0\n";
 				print F "<p class=\"negativo\">El usuario $user  tiene definido ID 0</p>\n";
 				print R "<p>El usuario $user  tiene definido ID 0. Recomendamos analizar si los permisos asignados son los correctos</p>\n";
 			}
@@ -356,14 +356,14 @@ print "-" x 100;
                     #print BOLD, GREEN, 'Positivo: ', RESET, "El valor del parametro $parametro es correcto\n";
                 }
                 else {
-                    print BOLD, RED  . 'Negativo: '. RESET, "El valor del parametro $parametro es incorrecto: [$valor_actual_de{$parametro}]\n";
+                    print BOLD, RED  . '\nNegativo: '. RESET, "El valor del parametro $parametro es incorrecto: [$valor_actual_de{$parametro}]\n";
 						print F "<p class=\"negativo\">Negativo: El valor $valor_actual_de{$parametro} del par&aacute;metro $parametro es incorrecto</p>\n";
 						print R "<p>El valor $valor_actual_de{$parametro} del par&aacute;metro $parametro es incorrecto. Recomendamos configurar el par&aacute;metro con el valor $valores_correctos_ref->{$parametro}</p>\n";
                        
                 }
             }
 			else {
-                print BOLD . 'No existe ' . RESET, "el parametro $parametro en $fichero\n";
+                print BOLD . '\nNo existe ' . RESET, "el parametro $parametro en $fichero\n";
 				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
 				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro.</p>\n";
             }
@@ -397,7 +397,7 @@ print "-" x 100;
 
 
 $CONEXIONESCHECK=`diff -i --ignore-space-change  /etc/passwd- /etc/passwd | grep ">" | cut -d: -f1 | sed "s/> //g"`;
-print BOLD, WHITE, "Informacion:", RESET . " $CONEXIONESCHECK\n";
+print BOLD, WHITE, "\nInformacion:", RESET . " $CONEXIONESCHECK\n";
 print F"<p>$CONEXIONESCHECK</p>\n";
 print R "<p>En el caso que existan usuarios agregados en el ultimo periodo, verificar que haya sido un requerimiento del servicio a prestar.</p>";		
 
@@ -436,7 +436,7 @@ $CMDDIFOK=`grep -e password /etc/pam.d/system-auth | grep difok | cut -d= -f2 | 
 
 
 if  ($CMDMINLEN eq ""){
-        print BOLD, RED, "Negativo:", RESET . " El parametro minlen no se encuentra configurado\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El parametro minlen no se encuentra configurado\n";
         print F "<p class=\"negativo\">Negativo: El par&aacute;metro minlen no se encuentra configurado</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro minlen con el valor 8</p>\n";
     }
@@ -444,7 +444,7 @@ elsif ($CMDMINLEN == 8){
 }
 
 else {
-		print BOLD, RED, "Negativo:", RESET . " El valor $CMDMINLEN del parametro minlen se encuentra mal configurado\n";
+		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDMINLEN del parametro minlen se encuentra mal configurado\n";
         print F "<p class=\"negativo\">Negativo: El valor $CMDMINLEN del par&aacute;metro minlen se encuentra mal configurado</p>\n";
 		print R "<p>Recomendamos configurar el valor 8 en el par&aacute;metro minlen</p>\n";
 }
@@ -452,7 +452,7 @@ else {
 
 
 if  ($CMRETRY eq ""){
-        print BOLD, RED, "Negativo:", RESET . " El parametro retry no se encuentra configurado\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El parametro retry no se encuentra configurado\n";
         print F "<p class=\"negativo\">Negativo: El par&aacute;metro retry no se encuentra configurado</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro retry con el valor 3</p>\n";
     }
@@ -460,14 +460,14 @@ elsif ($CMRETRY == 3){
 }
 
 else {
-		print BOLD, RED, "Negativo:", RESET . " El valor $CMRETRY del parametro retry se encuentra mal configurado\n";
+		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMRETRY del parametro retry se encuentra mal configurado\n";
         print F "<p class=\"negativo\">Negativo: El valor $CMRETRY del par&aacute;metro retry se encuentra mal configurado</p>\n";
 		print R "<p>Recomendamos configurar el valor 3 en el par&aacute;metro retry</p>\n";
 }
     
 	
 if  ($CMDUCREDIT eq ""){
-        print BOLD, RED, "Negativo:", RESET . " El parametro ucredit no se encuentra configurado\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El parametro ucredit no se encuentra configurado\n";
         print F "<p class=\"negativo\">Negativo: El par&aacute;metro ucredit no se encuentra configurado</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro ucredit con el valor -1</p>\n";
     }
@@ -481,7 +481,7 @@ else {
 }
 
 if  ($CMDDCREDIT eq ""){
-        print BOLD, RED, "Negativo:", RESET . " El parametro dcredit no se encuentra configurado\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El parametro dcredit no se encuentra configurado\n";
         print F "<p class=\"negativo\">Negativo: El par&aacute;metro dcredit no se encuentra configurado</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro dcredit con el valor -1</p>\n";
     }
@@ -489,13 +489,13 @@ elsif ($CMDDCREDIT == -1){
 }
 
 else {
-		print BOLD, RED, "Negativo:", RESET . " El valor $CMDDCREDIT del parametro dcredit se encuentra mal configurado\n";
+		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDDCREDIT del parametro dcredit se encuentra mal configurado\n";
         print F "<p class=\"negativo\">Negativo: El valor $CMDDCREDIT del par&aacute;metro dcredit se encuentra mal configurado</p>\n";
 		print R "<p>Recomendamos configurar el valor -1 en el par&aacute;metro dcredit</p>\n";
 }
 
 if  ($CMDLCREDIT eq ""){
-        print BOLD, RED, "Negativo:", RESET . " El parametro lcredit no se encuentra configurado\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El parametro lcredit no se encuentra configurado\n";
         print F "<p class=\"negativo\">Negativo: El par&aacute;metro lcredit no se encuentra configurado</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro lcredit con el valor -1</p>\n";
     }
@@ -503,7 +503,7 @@ elsif ($CMDLCREDIT == -1){
 }
 
 else {
-		print BOLD, RED, "Negativo:", RESET . " El valor $CMDLCREDIT del parametro lcredit se encuentra mal configurado\n";
+		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDLCREDIT del parametro lcredit se encuentra mal configurado\n";
         print F "<p class=\"negativo\">Negativo: El valor $CMDLCREDIT del par&aacute;metro lcredit se encuentra mal configurado</p>\n";
 		print R "<p>Recomendamos configurar el valor -1 en el par&aacute;metro lcredit</p>\n";
 }
@@ -511,7 +511,7 @@ else {
 
 
 if  ($CMDOCREDIT eq ""){
-        print BOLD, RED, "Negativo:", RESET . " El parametro ocredit no se encuentra configurado\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El parametro ocredit no se encuentra configurado\n";
         print F "<p class=\"negativo\">Negativo: El par&aacute;metro ocredit no se encuentra configurado</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro ocredit con el valor -1</p>\n";
     }
@@ -519,7 +519,7 @@ elsif ($CMDOCREDIT == -1){
 }
 
 else {
-		print BOLD, RED, "Negativo:", RESET . " El valor $CMDOCREDIT del parametro ocredit se encuentra mal configurado\n";
+		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDOCREDIT del parametro ocredit se encuentra mal configurado\n";
         print F "<p class=\"negativo\">Negativo: El valor $CMDOCREDIT del par&aacute;metro ocredit se encuentra mal configurado</p>\n";
 		print R "<p>Recomendamos configurar el valor -1 en el par&aacute;metro ocredit</p>\n";
 }
@@ -527,7 +527,7 @@ else {
 
 
 if  ($CMDDIFOK eq ""){
-        print BOLD, RED, "Negativo:", RESET . " El parametro difok no se encuentra configurado\n";
+        print BOLD, RED, "\nNegativo:", RESET . " El parametro difok no se encuentra configurado\n";
         print F "<p class=\"negativo\">Negativo: El par&aacute;metro difok no se encuentra configurado</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro difok con el valor 2</p>\n";
     }
@@ -535,7 +535,7 @@ elsif ($CMDDIFOK == 2){
 }
 
 else {
-		print BOLD, RED, "Negativo:", RESET . " El valor $CMDDIFOK del parametro difok se encuentra mal configurado\n";
+		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDDIFOK del parametro difok se encuentra mal configurado\n";
         print F "<p class=\"negativo\">Negativo: El valor $CMDDIFOK del par&aacute;metro difok se encuentra mal configurado</p>\n";
 		print R "<p>Recomendamos configurar el valor 2 en el par&aacute;metro difok</p>\n";
 }
@@ -574,7 +574,7 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "Informacion:", RESET . " $linea\n";
+    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
 print F"<p>$linea</p>\n";
 } 
 close INFILE;
@@ -618,7 +618,7 @@ while (<SINPASSWD>) {
                         my $linea;
                         while ( $linea = <INFILE>) {
                                 chomp($linea);
-								print BOLD, WHITE, "Informacion:", RESET . " $user:\n$linea\n";
+								print BOLD, WHITE, "\nInformacion:", RESET . " $user:\n$linea\n";
                                 print F"<p><b>$user:</b>\n$linea</p>\n";
                         }
                 }
@@ -671,7 +671,7 @@ while (<SINPASSWD>) {
                         my $linea;
                         while ( $linea = <INFILE>) {
                                 chomp($linea);
-								print BOLD, WHITE, "Informacion:", RESET . " usuario:$user / archivo: $filename / contenido: $linea<\n";
+								print BOLD, WHITE, "\nInformacion:", RESET . " usuario:$user / archivo: $filename / contenido: $linea<\n";
                                 print F"<p><b>usuario:$user</b> / <b>archivo</b>:$filename / <b>contenido</b>:$linea</p>\n";
                         }
                 }
@@ -725,7 +725,7 @@ while (<USER>) {
 	   if ($username eq $user)
 	   {
 		if ($passwd ne "*" && $passwd ne "!" && $passwd ne "!!") {
-        print BOLD, WHITE, "Informacion:", RESET . " Usuario: $user\n";
+        print BOLD, WHITE, "\nInformacion:", RESET . " Usuario: $user\n";
 		print F"<p>$user</p>\n";
         }
 	   }
@@ -783,7 +783,7 @@ if  (`grep -v '^#' $archivo | grep -c '^authpriv'` ==  0){
         }
 
 if ("$aux" =="0"){
-print BOLD, RED, "Negativo:", RESET . " El archivo $archivo no existe";
+print BOLD, RED, "\nNegativo:", RESET . " El archivo $archivo no existe";
 print F "<p class=\"negativo\">Negativo: El archivo $archivo no existe</p>\n";
 print R "<p>El archivo $archivo no existe</p>\n";
  } 
@@ -818,7 +818,7 @@ my $aux=0;
 my $archivo="/etc/rsyslog.conf";
 if  (`grep -v '^#' $archivo | grep -c '^authpriv'` ==  0){
     my $aux=1;
-        print BOLD, RED, "Negativo:", RESET . " No esta habilitado la captura de eventos del sistema operativo mediante rsyslog\n";
+        print BOLD, RED, "\nNegativo:", RESET . " No esta habilitado la captura de eventos del sistema operativo mediante rsyslog\n";
 		print F "<p class=\"negativo\">Negativo: No esta habilitado la captura de eventos del sistema operativo mediante rsyslog</p>\n";
 		print R "<p>Se recomienda habilitar la captura de eventos del sistema operativo mediante syslog</p>\n";
     }
@@ -828,7 +828,7 @@ if  (`grep -v '^#' $archivo | grep -c '^authpriv'` ==  0){
  
           }
 if ("$aux" =="0"){
-print BOLD, RED, "Negativo:", RESET . " El archivo $archivo no existe";
+print BOLD, RED, "\nNegativo:", RESET . " El archivo $archivo no existe";
 print F "<p class=\"negativo\">Negativo: El archivo $archivo no existe</p>\n";
 print R "<p>El archivo $archivo no existe</p>\n";
  } 
@@ -869,7 +869,7 @@ if ( "$comando"  eq "root" ){
  }
 else
 {
-print BOLD, RED, "Negativo:", RESET . " El archivo $varb tiene como owner $comando\n";
+print BOLD, RED, "\nNegativo:", RESET . " El archivo $varb tiene como owner $comando\n";
 print F "<p class=\"negativo\">Negativo: El archivo $varb tiene como owner $comando</p>\n";
 print R "<p>Se recomienda analizar el owner del archivo $varb ya que tiene como owner $comando</p>\n";
 }
@@ -889,7 +889,7 @@ if ( "$comando1"  eq "root" ){
         }
 else
 {
-print BOLD, RED, "Negativo:", RESET . " El directorio $varb tiene como owner $comando1\n";
+print BOLD, RED, "\nNegativo:", RESET . " El directorio $varb tiene como owner $comando1\n";
 print F "<p class=\"negativo\">Negativo: El directorio $varb tiene como owner $comando1</p>\n";
 print R "<p>Se recomienda analizar el owner del directorio $varb ya que tiene como owner $comando1</p>\n";
 }
@@ -909,7 +909,7 @@ if ( "$comando2"  eq "-rw-r--r--" ){
         }
 else
 {
-print BOLD, RED, "Negativo:", RESET . " El archivo $varb tiene como permisos $comando2\n";
+print BOLD, RED, "\nNegativo:", RESET . " El archivo $varb tiene como permisos $comando2\n";
 print F "<p class=\"negativo\">Negativo: El archivo $varb tiene como permisos $comando2</p>\n";
 print R "<p>Se recomienda analizar los permisos del archivo $varb ya que tiene como permisos $comando2</p>\n";
 }
@@ -929,7 +929,7 @@ if ( "$comando3"  eq "drwxr-xr-x" ){
         }
 else
 {
-print BOLD, RED, "Negativo:", RESET . " El directorio $varb tiene como permisos $comando3\n";
+print BOLD, RED, "\nNegativo:", RESET . " El directorio $varb tiene como permisos $comando3\n";
 print F "<p class=\"negativo\">Negativo: El directorio $varb tiene como permisos $comando3</p>\n";
 print R "<p>Se recomienda analizar los permisos del directorio $varb ya que tiene como permisos $comando3</p>\n";
 }
@@ -948,7 +948,7 @@ if ( "$comando4"  eq "-rw-r-----" ){
         }
 else
 {
-print BOLD, RED, "Negativo:", RESET . " El archivo $varb tiene como permisos $comando4\n";
+print BOLD, RED, "\nNegativo:", RESET . " El archivo $varb tiene como permisos $comando4\n";
 print F "<p class=\"negativo\">Negativo: El archivo $varb tiene como permisos $comando4</p>\n";
 }
 }
@@ -998,7 +998,7 @@ sub wanted {
         (($mode & 01000) == 01000)
     ) and
     
-print BOLD, WHITE, "Informacion:",RESET . " Se detecto sticky bit en $name\n" and
+print BOLD, WHITE, "\nInformacion:",RESET . " Se detecto sticky bit en $name\n" and
 print F "<p class=\"negativo\">Informacion: Directorio con sticky bit $name</p>\n" and
 print R "<p>Verificar si el permiso de sticky bit del directorio $name es requerido.</p>\n";
 }
@@ -1048,7 +1048,7 @@ sub wanted1 {
         ! (($mode & 01000) == 01000)
     ) and
 
-    print BOLD,RED, "Negativo:", RESET . " Archivo/Directorio con permisos de escritura para todos los usuarios $name\n" and
+    print BOLD,RED, "\nNegativo:", RESET . " Archivo/Directorio con permisos de escritura para todos los usuarios $name\n" and
 print F "<p class=\"negativo\">Negativo: Archivo/Directorio con permisos de escritura para todos los usuarios $name</p>\n" and
 print R "<p>Verificar si el permisos de escritura para todos los usuarios del $name es el requerido</p>\n";
 }
@@ -1100,7 +1100,7 @@ sub wanted2 {
     ) and
     -f _ and
 
-         print BOLD, WHITE, "Informacion:", RESET . " Se detecto suid/gsid en $name\n" and
+         print BOLD, WHITE, "\nInformacion:", RESET . " Se detecto suid/gsid en $name\n" and
          print F "<p class=\"negativo\">Informacion: Se detecto suid/gsid en $name</p>\n" and
 		 print F "<p>Verificar si el permiso de suid/gsid en $name es el requerido</p>\n"
         }
@@ -1158,7 +1158,7 @@ sub wanted3 {
     ||
     !exists $gid{$gid} and
 
-        print BOLD, RED, "Negativo:", RESET . " Archivo sin owner/group $name\n" and
+        print BOLD, RED, "\nNegativo:", RESET . " Archivo sin owner/group $name\n" and
 		print F "<p class=\"negativo\">Negativo: Archivo sin owner/group $name</p>\n" and
 		print R "<p>Asignarle un owner/group a $name</p>\n"
         }
@@ -1198,7 +1198,7 @@ File::Find::find({wanted => \&wanted5}, '/');
 
 sub wanted5 {
     /^\.netrc\z/s and
-print BOLD, RED, "Negativo:", RESET . " Archivo de autenticacion ftp $name\n" and
+print BOLD, RED, "\nNegativo:", RESET . " Archivo de autenticacion ftp $name\n" and
 print F "<p class=\"negativo\">Negativo: Archivo de autenticacion ftp $name</p>\n" and
 print R "<p>Verificar si el archivos de autenticacion ftp $name es requerido</p>\n";
         }
@@ -1228,7 +1228,7 @@ print R "<div class=\"content\">\n";
 print "-" x 100;
 
 if  (`grep -v '^#' /etc/profile | grep -c '^export TMOUT'` ==  0){
-        print BOLD, RED, "Negativo:", RESET . " el archivo /etc/profile no contiene la variable TMOUT configurada\n";
+        print BOLD, RED, "\nNegativo:", RESET . " el archivo /etc/profile no contiene la variable TMOUT configurada\n";
         print F "<p class=\"negativo\">Negativo: El archivo /etc/profile no contiene la variable TMOUT configurada</p>\n";
 		print R "<p>Recomendamos configurar el par&aacute;metro TMOUT en el archivo /etc/profile</p>\n";
     }
@@ -1266,7 +1266,7 @@ print "-" x 100;
 $bannerpersona= `head -n2  /etc/issue | grep Cablevis`;
 
 if($bannerpersona eq ""){
-print BOLD, RED, "Negativo:", RESET . " El banner no se encuentra personalizado\n";
+print BOLD, RED, "\nNegativo:", RESET . " El banner no se encuentra personalizado\n";
 print F "<p class=\"negativo\">El banner no se encuentra personalizado</p>\n";
 print R "<p>Recomendamos personalizar el banner del servidor.</p>\n";
 
@@ -1347,7 +1347,7 @@ print "-" x 100;
                 }
                 else {
                     print
-                        BOLD, RED  , 'Negativo: ', RESET,
+                        BOLD, RED  , '\nNegativo: ', RESET,
                         "El valor del parametro $parametro es incorrecto: ",
                         "$valor_actual_de{$parametro}\n",
                         ;
@@ -1356,7 +1356,7 @@ print "-" x 100;
                 }
             }
            else {
-                print BOLD . 'No existe ' . RESET, "El parametro $parametro\n";
+                print BOLD . '\nNo existe ' . RESET, "El parametro $parametro\n";
 				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
 				print R "<p>Recomendamos configurar el par&aacute;metro $parametro con el valor $valores_correctos_ref->{$parametro} </p>\n";
             }
@@ -1366,7 +1366,7 @@ print "-" x 100;
 	$CHECKAllowUsers=`grep "^AllowUsers" /etc/ssh/sshd_config`;
     if ($CHECKAllowUsers eq "")
 	{
-	print BOLD . 'No existe ' . RESET, "El par&aacute;metro AllowUsers no existe en el archivo /etc/ssh/sshd_config\n";
+	print BOLD . '\nNo existe ' . RESET, "El par&aacute;metro AllowUsers no existe en el archivo /etc/ssh/sshd_config\n";
 	print F "<p class=\"negativo\">Negativo: El par&aacute;metro AllowUsers no existe</p>\n";	
 	print R "<p>Se recomienda configurar el par&aacute;metro AllowUsers</p>\n";	
 	}
@@ -1378,7 +1378,7 @@ print "-" x 100;
 	$CHECKGroups=`grep "^AllowGroups" /etc/ssh/sshd_config`;
     if ($CHECKGroups eq "")
 	{
-	print BOLD . 'No existe ' . RESET, "El par&aacute;metro AllowGroups no existe en el archivo /etc/ssh/sshd_config\n";
+	print BOLD . '\nNo existe ' . RESET, "El par&aacute;metro AllowGroups no existe en el archivo /etc/ssh/sshd_config\n";
 	print F "<p class=\"negativo\">Negativo: El par&aacute;metro AllowGroups no existe</p>\n";	
 	print R "<p>Se recomienda configurar el par&aacute;metro AllowGroups</p>\n";
 	}
@@ -1390,7 +1390,7 @@ print "-" x 100;
 	$CHECKDenyUsers=`grep "^DenyUsers" /etc/ssh/sshd_config`;
     if ($CCHECKDenyUsers eq "")
 	{
-	print BOLD . 'No existe ' . RESET, "El par&aacute;metro DenyUsers no existe en el archivo /etc/ssh/sshd_config\n";
+	print BOLD . '\nNo existe ' . RESET, "El par&aacute;metro DenyUsers no existe en el archivo /etc/ssh/sshd_config\n";
 	print F "<p class=\"negativo\">Negativo: El par&aacute;metro DenyUsers no existe</p>\n";	
 	print R "<p>Se recomienda configurar el par&aacute;metro DenyUsers</p>\n";
 	}
@@ -1402,7 +1402,7 @@ print "-" x 100;
 	$CHECKDenyGroups=`grep "^DenyGroups" /etc/ssh/sshd_config`;
     if ($CHECKDenyGroups eq "")
 	{
-	print BOLD . 'No existe ' . RESET, "El par&aacute;metro DenyGroups no existe en el archivo /etc/ssh/sshd_config\n";
+	print BOLD . '\nNo existe ' . RESET, "El par&aacute;metro DenyGroups no existe en el archivo /etc/ssh/sshd_config\n";
 	print F "<p class=\"negativo\">Negativo: El par&aacute;metro DenyGroups no existe</p>\n";	
 	print R "<p>Se recomienda configurar el par&aacute;metro DenyGroups</p>\n";
 	}
@@ -1441,7 +1441,7 @@ print "-" x 100;
 $selinuxon= `/usr/sbin/sestatus`;
 
 if($selinuxon =~ /disabled/){
-print BOLD, RED, "Negativo:", RESET . " SeLinux se encuentra desactivado\n";
+print BOLD, RED, "\nNegativo:", RESET . " SeLinux se encuentra desactivado\n";
 print F "<p class=\"negativo\">SeLinux se encuentra desactivado</p>\n";
 
 }
@@ -1480,7 +1480,7 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "Informacion:", RESET . " $linea\n";
+    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
 print F"<p>$linea</p>\n";
 } 
 close INFILE;
@@ -1520,7 +1520,7 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "Informacion:", RESET . " $linea\n";
+    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
 print F"<p>$linea</p>\n";
 } 
 close INFILE;
@@ -1551,7 +1551,7 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "Informacion:", RESET . " $linea\n";
+    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
 print F"<p>$linea</p>\n";
 } 
 close INFILE;
@@ -1592,7 +1592,7 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "Informacion:", RESET . " $linea\n";
+    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
 print F"<p>$linea</p>\n";
 } 
 close INFILE;
@@ -1653,7 +1653,7 @@ my $md5 =  md5sum($fname);
 
 if($md5 ne ""){
                 print $md5." ".$fname."\n";
-				print BOLD, WHITE, "Informacion:", RESET . $md5." ".$fname."\n";
+				print BOLD, WHITE, "\nInformacion:", RESET . $md5." ".$fname."\n";
 				print F"<p>$md5 $fname</p>\n";
         }
 		
@@ -1902,6 +1902,7 @@ my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
 	if ($linea != 3){
+	print BOLD, RED, "\nNegativo:", RESET . " El valor $linea del par&aacute;metro initdefault es incorrecto\n";
 	print F "<p class=\"negativo\">Negativo: El valor $linea del par&aacute;metro initdefault es incorrecto</p>\n";
 	print R"<p>Se recomienda configurar el valor 3 sobre el par&aacute;metro initdefault</p>\n";
 
@@ -1923,12 +1924,12 @@ print R "</div>\n";
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 19.0 -- Verificar configuracion samba\n";
-print F "  <h3>Fase 19.0 -- Verificar configuracion samba</h3>\n";
+print " \nFase 19.0 -- Verificar configuración samba\n";
+print F "  <h3>Fase 19.0 -- Verificar configuraci&oacute;n samba</h3>\n";
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 19.0 -- Verificar configuracion samba</h3>\n";
+print R "  <h3>Fase 19.0 -- Verificar configuraci&oacute;n samba</h3>\n";
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 

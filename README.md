@@ -3,6 +3,8 @@ redhatchecklist
 
 El script tiene como objetivo realizar una evaluación sobre un Sistema RedHat o sus derivados, en busca de desviaciones de configuración contra las mejores prácticas del mercado.  El motivo de la creación del script se debió a la necesidad de cumplir ciertas normativas en los servidores donde trabajo, cabe aclarar que esta herramienta fue pensada con ese propósito y por este motivo no utilice "lynis" para la tarea.
 
+Si alguna persona quiere ayudarme a optimizar/organizar o reprogramar el "código" es bienvenido :) ya que como verán me faltan muchos skills sobre la materia.
+
 Procedimiento de uso
 ====================
 

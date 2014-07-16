@@ -365,7 +365,7 @@ print "-" x 100;
 			else {
                 print BOLD . '\nNo existe ' . RESET, "el parametro $parametro en $fichero\n";
 				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
-				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro.</p>\n";
+				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro con el valor $valores_correctos_ref->{$parametro}.</p>\n";
             }
 			
           }
@@ -1358,7 +1358,7 @@ print "-" x 100;
            else {
                 print BOLD . '\nNo existe ' . RESET, "El parametro $parametro\n";
 				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
-				print R "<p>Recomendamos configurar el par&aacute;metro $parametro con el valor $valores_correctos_ref->{$parametro} </p>\n";
+				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro con el valor $valores_correctos_ref->{$parametro}.</p>\n";
             }
         }
     }
@@ -1957,7 +1957,7 @@ print "-" x 100;
 			else {
                 print BOLD . '\nNo existe ' . RESET, "el parametro $parametro en $fichero\n";
 				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
-				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro.</p>\n";
+				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro con el valor $valores_correctos_ref->{$parametro}.</p>\n";
             }
 			
           }

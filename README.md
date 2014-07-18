@@ -10,6 +10,8 @@ Procedimiento de uso
 
 1) Modificar la linea "20" del archvio /libs/fase6.pl donde se encuentra la variable "$bannerpersona" con el valor "Cable" por algún string que se encuentra en el banner personalizado de su Compañia.
 
+Modificar la linea "29" del archvio /libs/fase7.pl donde se encuentra la variable "ListenAddress" con el valor '10.246' por las direcciones IP que deben estar configuradas.
+
 2) Debemos copiar al servidor que sera analizando nuestro script redhatchecklist.pl y la carpeta /libs/
 
 2) Ejecutar con permisos de root el script.

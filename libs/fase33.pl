@@ -42,7 +42,7 @@ sub wanted2 {
 
          print BOLD, WHITE, "\nInformacion:", RESET . " Se detecto suid/gsid en $name\n" and
          print F "<p class=\"negativo\">Informacion: Se detecto suid/gsid en $name</p>\n" and
-		 print F "<p>Verificar si el permiso de suid/gsid en $name es el requerido</p>\n"
+		 print R "<p>Verificar si el permiso de suid/gsid en $name es el requerido</p>\n"
         }
 
 print F "</div>\n";

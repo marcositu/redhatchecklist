@@ -17,6 +17,11 @@ print R "<div class=\"content\">\n";
 
 print "-" x 100;
 
+$filename= "/etc/samba/smb.conf1";
+
+   if( -e $filename){
+   
+
 $SMBCHECK=`grep -v -e \"#\" -e \";\" /etc/samba/smb.conf | sed '/^[ ]*\$/d'&> /tmp/smbcheck_check.txt`;
 
 
@@ -34,6 +39,12 @@ close INFILE;
 unlink '/tmp/smbcheck_check.txt';		
 
 print R "<p>Se recomienda analizar si la configuraci&oacute;n de SMB es la esperada.</p>\n";
+
+   }
+   else {
+   print F "<p>No se identific&oacute; la configuraci&oacute;n de Samba.</p>\n";
+   }
+
 
 print F "</div>\n";
 print F "</div>\n";

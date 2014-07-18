@@ -12,7 +12,8 @@ Procedimiento de uso
 
 2) Debemos copiar al servidor que sera analizando nuestro script redhatchecklist.pl y la carpeta /libs/
 
-2) Ejecutar ejecutar con permisos de root.
+2) Ejecutar con permisos de root el script.
+
 [server]# perl redhatchecklist.pl
 
 3) Luego debemos copiar los 2 reportes "html" al mismo directorio donde tenemos los siguientes archivos/diretorios:

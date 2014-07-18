@@ -17,8 +17,8 @@ Procedimiento de uso
 [server]# perl redhatchecklist.pl
 
 3) Luego debemos copiar los 2 reportes "html" al mismo directorio donde tenemos los siguientes archivos/diretorios:
-- src
-- vendor
+- /src/
+- /vendor/
 - demo.css
 - sprite.png
 

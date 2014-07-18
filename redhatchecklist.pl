@@ -3,7 +3,8 @@
  use File::Find ();;
  use Digest::MD5;
  use lib 'libs';
-
+my $Hostname=`hostname`;
+chomp $Hostname;
 ## Muchas gracias a perl en español por la ayuda
 ## Si alguien quieren ayudarme a optimizar el codigo o "programar" como se debe es bienvenido.
 
@@ -164,7 +165,7 @@ require "fase1616.pl";
 # Fase 17.0 -- Configuración de Red
 require "fase1717.pl"; 
 
-# Fase 17.1 -- Rutas
+# Fase 17.1 -- Verificación de rutas
 require "fase171.pl"; 
 
 # Fase 17.2 -- Verificacion configuración sysctl
@@ -178,6 +179,9 @@ require "fase1818.pl";
 
 # Fase 19.0 -- Verificar configuracion samba
 require "fase119.pl"; 
+
+# Fase 20.0 -- Verificar sincronización NTP
+require "fase200.pl"; 
 
 print F "
  <script>

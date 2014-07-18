@@ -2,16 +2,16 @@
 use Term::ANSIColor qw(:constants);
 
 # ----------------------------------------------------------------------------------------
-# Fase 17.1 -- Rutas
+# # Fase 17.1 -- Verificación de rutas
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 17.1 -- Rutas\n";
-print F "  <h3>Fase 17.1 -- Rutas</h3>\n";
+print " \nFase 17.1 -- Verificación de rutas\n";
+print F "  <h3>Fase 17.1 -- Verificaci&oacute;n de rutas</h3>\n";
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 17.1 -- Rutas</h3>\n";
+print R "  <h3>Fase 17.1 -- Verificaci&oacute;n de rutas</h3>\n";
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 

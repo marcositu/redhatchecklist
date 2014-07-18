@@ -65,14 +65,14 @@ print "-" x 100;
                     #print BOLD, GREEN, 'Positivo: ', RESET, "El valor del parametro $parametro es correcto\n";
                 }
                 else {
-                    print BOLD, RED  . '\nNegativo: '. RESET, "El valor del parametro $parametro es incorrecto: [$valor_actual_de{$parametro}]\n";
+                    print BOLD, RED  . "\nNegativo: ". RESET, "El valor del parametro $parametro es incorrecto: [$valor_actual_de{$parametro}]\n";
 						print F "<p class=\"negativo\">Negativo: El valor $valor_actual_de{$parametro} del par&aacute;metro $parametro es incorrecto</p>\n";
 						print R "<p>El valor $valor_actual_de{$parametro} del par&aacute;metro $parametro es incorrecto. Recomendamos configurar el par&aacute;metro con el valor $valores_correctos_ref->{$parametro}</p>\n";
                        
                 }
             }
 			else {
-                print BOLD . '\nNo existe ' . RESET, "el parametro $parametro en $fichero\n";
+                print BOLD, RED  .  "\nNo existe " . RESET, "el parametro $parametro en $fichero\n";
 				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
 				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro con el valor $valores_correctos_ref->{$parametro}.</p>\n";
             }

@@ -8,9 +8,11 @@ Si alguna persona quiere ayudarme a optimizar/organizar o reprogramar el "códig
 Procedimiento de uso
 ====================
 
-1) Modificar la linea "1266" donde se encuentra la variable "$bannerpersona" por algun string que se encuentra en el banner personalizado de la Compañia.
+1) Modificar la linea "20" del archvio /libs/fase6.pl donde se encuentra la variable "$bannerpersona" con el valor "Cable" por algún string que se encuentra en el banner personalizado de su Compañia.
 
-2) Debemos ejecutar el script en el servidor a analizar, se debe tener permisos de root en el mismo.
+2) Debemos copiar al servidor que sera analizando nuestro script redhatchecklist.pl y la carpeta /libs/
+
+2) Ejecutar ejecutar con permisos de root.
 [server]# perl redhatchecklist.pl
 
 3) Luego debemos copiar los 2 reportes "html" al mismo directorio donde tenemos los siguientes archivos/diretorios:

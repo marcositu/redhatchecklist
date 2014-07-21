@@ -3,7 +3,7 @@
  use File::Find ();;
  use Digest::MD5;
  use lib 'libs';
-my $Hostname=`hostname`;
+my $Hostname=`uname -n`;
 chomp $Hostname;
 ## Muchas gracias a perl en español por la ayuda
 ## Si alguien quieren ayudarme a optimizar el codigo o "programar" como se debe es bienvenido.

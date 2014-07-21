@@ -6,7 +6,7 @@ my $SistemaOperativo=`uname`;
 chomp $SistemaOperativo;
 my $Release=`uname -r`;
 chomp $Release;
-my $Hostname=`hostname`;
+my $Hostname=`uname -n`;
 chomp $Hostname;
 my $SistemaOperativoC=`uname -a`;
 chomp $SistemaOperativoC;

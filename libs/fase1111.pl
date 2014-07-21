@@ -8,6 +8,10 @@ print " \nFase 11.0 -- Procesos\n";
 print F "  <h3>Fase 11.0 -- Procesos</h3>\n";
 print F "<div>\n";
 print F "<div class=\"content\">\n";
+
+print R "  <h3>Fase 11.0 -- Procesos</h3>\n";
+print R "<div>\n";
+print R "<div class=\"content\">\n";
 print "-" x 100;
 
 $PROCESOSCHECK=`ps -fea > /tmp/procesos_check.txt`;

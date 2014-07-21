@@ -98,9 +98,8 @@ require "fase18.pl";
 # Fase 1.9 -- Relaciones de confianza
 require "fase19.pl"; 
 
-
-# Fase 1.9 -- Relaciones de confianza
-require "fase19.pl"; 
+# Fase 1.10 -- Usuarios con acceso al sistema
+require "fase100.pl"; 
 
 # Fase 2.0 -- Eventos mediante Syslog - AUTHPRIV
 require "fase2.pl"; 

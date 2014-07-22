@@ -26,7 +26,7 @@ print F "<p class=\"negativo\">SeLinux se encuentra desactivado</p>\n";
 
 }
 
-print R "<p>Se recomienda configurar el y activar SeLinux</p>\n";
+print R "<p>Se recomienda configurar y activar SeLinux</p>\n";
 print F "</div>\n";
 print F "</div>\n";
 

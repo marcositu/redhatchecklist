@@ -101,6 +101,9 @@ require "fase19.pl";
 # Fase 1.10 -- Usuarios con acceso al sistema
 require "fase100.pl"; 
 
+# Fase 1.11 -- Verificar que no existan usuarios con Grupo ID 0
+require "fase111.pl"; 
+
 # Fase 2.0 -- Eventos mediante Syslog - AUTHPRIV
 require "fase2.pl"; 
 

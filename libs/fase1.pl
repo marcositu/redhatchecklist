@@ -40,7 +40,7 @@ close INFILE;
 unlink '/tmp/passwdusers_check.txt';		
 
 
-print R"<p>Se recomienda tener solamente los usuarios que va a ser utilizados</p>\n";
+print R"<p>Se recomienda analizar si los usuarios listado son los correctos</p>\n";
 close(USER);
 print F "</div>\n";
 print F "</div>\n";

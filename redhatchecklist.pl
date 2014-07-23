@@ -66,7 +66,7 @@ print "\n";
 # Fase 0.0 -- Informacióel Equipo
 require "fase0.pl";
 
-# Fase 1.0 -- Listado de los usuarios del sistema
+# Fase 1.0 -- Informacion de los usuarios del sistema
 require "fase1.pl";
 
 # Fase 1.1 -- Comprobacion de Usuarios/Grupos

@@ -19,7 +19,7 @@ print R "<div class=\"content\">\n";
 
 
 print "-" x 100;
-my @archivos = ("/etc/passwd", "/etc/shadow", "/etc/group", "/etc/hosts", "/etc/fstab", "/etc/mtab", "/etc/inittab", "/etc/exports", "/etc/profile", "/etc/inetd.conf", "/etc/crontab", "/etc/hosts.allow", "/etc/hosts.deny", "/etc/ld.so.conf", "/etc/modules", "/etc/motd", "/etc/profile", "/etc/securetty", "/etc/syslog.conf");
+my @archivos = ("/etc/passwd", "/etc/group", "/etc/hosts", "/etc/fstab", "/etc/mtab", "/etc/inittab", "/etc/exports", "/etc/profile", "/etc/inetd.conf", "/etc/crontab", "/etc/hosts.allow", "/etc/hosts.deny", "/etc/ld.so.conf", "/etc/modules", "/etc/motd", "/etc/profile", "/etc/syslog.conf");
 foreach $varb (@archivos){
 
 if (-e $varb){
@@ -38,7 +38,7 @@ print R "<p>Se recomienda analizar el owner del archivo $varb ya que tiene como 
 }
 }
 }
-my @directorios = ("/bin", "/boot", "/dev",  "/etc", "/etc/cron.daily", "/etc/cron.hourly", "/etc/cron.monthly", "/etc/cron.weekly", "/home/", "/lib/", "/mnt/", "/root/", "/sbin/", "/tmp/", "/usr/", "/usr/bin/", "/usr/sbin/", "/var/");
+my @directorios = ("/bin", "/boot", "/dev",  "/etc", "/etc/cron.daily", "/etc/cron.hourly", "/etc/cron.monthly", "/etc/cron.weekly", "/home/", "/lib/", "/mnt/", "/sbin/", "/usr/", "/usr/bin/", "/usr/sbin/", "/var/");
 
 foreach $varb (@directorios){
 if (-e $varb){

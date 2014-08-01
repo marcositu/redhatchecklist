@@ -25,7 +25,7 @@ while (<ID0PASSWD>) {
        $user=$userdata[0];
        $id0=$userdata[3];
 	   
-	   if ($username ne "root" && $username ne "halt" && $username ne "sync" && $username ne "shutdown" && $username ne "operator")
+	   if ($user ne "root" && $user ne "halt" && $user ne "sync" && $user ne "shutdown" && $user ne "operator")
 	   {
 			if ($id0 == 0) {
 		 

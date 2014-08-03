@@ -26,9 +26,9 @@ my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
 	if ($linea != 3){
-	print BOLD, RED, "\nNegativo:", RESET . " El valor $linea del par&aacute;metro initdefault es incorrecto\n";
-	print F "<p class=\"negativo\">Negativo: El valor $linea del par&aacute;metro initdefault es incorrecto</p>\n";
-	print R"<p>Se recomienda configurar el valor 3 sobre el par&aacute;metro initdefault</p>\n";
+	print BOLD, RED, "\nNegativo:", RESET . " El valor $linea del par&aacute;metro inittab es incorrecto\n";
+	print F "<p class=\"negativo\">Negativo: El valor $linea del par&aacute;metro inittab es incorrecto</p>\n";
+	print R"<p>Se recomienda configurar el valor 3 sobre el par&aacute;metro inittab</p>\n";
 
 	}
 } 

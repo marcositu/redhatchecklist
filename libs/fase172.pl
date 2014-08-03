@@ -1,6 +1,7 @@
 
 use Term::ANSIColor qw(:constants);
-
+ no warnings;
+ 
 # ------------------------------------------------- ---------------------------------------
 # Fase 17.2 -- Verificacion configuraciÛn sysctl
 # ----------------------------------------------------------------------------------------
@@ -20,7 +21,7 @@ print "-" x 100;
     # Valores correctos esperados
     my %valores_correctos_de = (
 
-        login_defs  => {
+						sysctl  => {
                         fichero    => '/etc/sysctl.conf',
                         patron     => qr/^ (\S+) \s* = \s* (\S+) $/xi,
                         parametros => {
@@ -39,7 +40,7 @@ print "-" x 100;
 										net.ipv4.icmp_echo_ignore_broadcasts => 1,
 										net.ipv4.icmp_ignore_bogus_error_responses => 1,
 										net.ipv4.tcp_syncookies => 1,
-										net.ipv4.conf.all.rp_filter => 1
+										net.ipv4.conf.all.rp_filter => 1,
 										net.ipv4.conf.default.rp_filter => 1,
 										net.ipv4.tcp_timestamps => 0,
                                       },
@@ -48,7 +49,7 @@ print "-" x 100;
     );
 
     # Arrancamos los an√°sis
-    analiza($valores_correctos_de{login_defs});
+    analiza($valores_correctos_de{sysctl});
 
     # Subrutina que analiza
     sub analiza {

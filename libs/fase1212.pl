@@ -1,16 +1,24 @@
-use Term::ANSIColor qw(:constants);
+#!/usr/bin/perl -w
+
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 
 # ----------------------------------------------------------------------------------------
-# Fase 12.0 -- Conexiones
+# Fase 12.0 -- Conexiones / Connections
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 12.0 -- Conexiones\n";
-print F "  <h3>Fase 12.0 -- Conexiones</h3>\n";
+print $Msg::msg[$Msg::idioma][106];
+print F $Msg::msg[$Msg::idioma][107];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 12.0 -- Conexiones</h3>\n";
+print R $Msg::msg[$Msg::idioma][107];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -24,14 +32,14 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
-print F"<p>$linea</p>\n";
+    print "\n$linea\n";
+	print F"<p>$linea</p>\n";
 } 
 close INFILE;
 
 unlink '/tmp/conexiones_check.txt';			
 
-print R "<p>Se recomienda analizar si las conexiones son las esperadas</p>\n";
+print R $Msg::msg[$Msg::idioma][108];
 
 print F "</div>\n";
 print F "</div>\n";

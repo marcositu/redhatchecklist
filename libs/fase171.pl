@@ -1,17 +1,23 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 # ----------------------------------------------------------------------------------------
-# # Fase 17.1 -- Verificación de rutas
+# # Fase 17.1 -- Verificación de rutas / Route verification
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 17.1 -- Verificación de rutas\n";
-print F "  <h3>Fase 17.1 -- Verificaci&oacute;n de rutas</h3>\n";
+print $Msg::msg[$Msg::idioma][124];
+print F $Msg::msg[$Msg::idioma][125];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 17.1 -- Verificaci&oacute;n de rutas</h3>\n";
+print R $Msg::msg[$Msg::idioma][125];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -26,14 +32,14 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
+    print "\n$linea\n";
 print F "<p>$linea</p>\n";
 } 
 close INFILE;
 
 unlink '/tmp/rutascheck_check.txt';		
 
-print R "<p>Se recomienda analizar si la configuraci&oacute;n de ruteo es la esperada.</p>\n";
+print R $Msg::msg[$Msg::idioma][126];
 
 print F "</div>\n";
 print F "</div>\n";

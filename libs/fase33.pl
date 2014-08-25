@@ -1,18 +1,24 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 # ----------------------------------------------------------------------------------------
-# Fase 3.3 -- Verificacion de suid/gsid
+# Fase 3.3 -- Verificacion de suid/gsid / Verify suid/gsid
 # ----------------------------------------------------------------------------------------
 
 
 print "-" x 100;
-print " \nFase 3.3 -- Verificacion de suid/gsid\n";
-print F "<h3>Fase 3.3 -- Verificacion de suid/gsid</h3>\n";
+print $Msg::msg[$Msg::idioma][74];
+print F $Msg::msg[$Msg::idioma][75];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "<h3>Fase 3.3 -- Verificacion de suid/gsid</h3>\n";
+print R $Msg::msg[$Msg::idioma][75];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -40,9 +46,11 @@ sub wanted2 {
     ) and
     -f _ and
 
-         print BOLD, WHITE, "\nInformacion:", RESET . " Se detecto suid/gsid en $name\n" and
-         print F "<p class=\"negativo\">Informacion: Se detecto suid/gsid en $name</p>\n" and
-		 print R "<p>Verificar si el permiso de suid/gsid en $name es el requerido</p>\n"
+	
+	print ($miidioma eq "es" ? "\n$name con suid/gsid\n" : "\n$name with suid/gsid\n") and 
+print F ($miidioma eq "es" ? "<p class=\"negativo\">$name con suid/gsid</p>\n" : "<p class=\"negativo\">$name with suid/gsid</p>\n") and
+print R ($miidioma eq "es" ? "<p>Verificar si el permiso de suid/gsid en $name es el requerido</p>\n" : "<p>Verify $name with suid/gsid is required for the server’s administration</p>\n");	
+	
         }
 
 print F "</div>\n";

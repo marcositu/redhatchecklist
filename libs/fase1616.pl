@@ -1,17 +1,24 @@
-use Term::ANSIColor qw(:constants);
+#!/usr/bin/perl -w
+
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 # ----------------------------------------------------------------------------------------
-# Fase 16.0 -- Versiones de softwares
+# Fase 16.0 -- Versiones de softwares / Software versions
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 16.0 -- Versiones de softwares\n";
-print F "  <h3>Fase 16.0 -- Versiones de softwares</h3>\n";
+print $Msg::msg[$Msg::idioma][118];
+print F $Msg::msg[$Msg::idioma][119];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
 
-print R "  <h3>Fase 16.0 -- Versiones de softwares</h3>\n";
+print R $Msg::msg[$Msg::idioma][119];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -25,18 +32,18 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
+    print "\n$linea\n";
 print F "<p>$linea</p>\n";
 } 
 close INFILE;
 
 
- print BOLD, WHITE, "\nInformacion:", RESET . " $OPENSSLCHECK\n";
+ print "\n$OPENSSLCHECK\n";
  print F "<p>$OPENSSLCHECK</p>\n";
 
 unlink 'sshversion_check.txt';		
 
-print R "<p>Se recomienda analizar si las versiones de los softwares listados son las ultimas y si se encuentran fuera de problemas de seguridad.</p>\n";
+print R $Msg::msg[$Msg::idioma][120];
 
 print F "</div>\n";
 print F "</div>\n";

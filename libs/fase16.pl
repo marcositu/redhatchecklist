@@ -1,17 +1,20 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
-
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 # ----------------------------------------------------------------------------------------
 # Fase 1.6 -- Configuracion PAM
 # ----------------------------------------------------------------------------------------
-
-print "-" x 100;
-print " \nFase 1.6 -- Configuracion PAM\n";
-print F "  <h3>Fase 1.6 -- Configuraci&oacute;n PAM</h3>\n";
+print $Msg::msg[$Msg::idioma][21];
+print F $Msg::msg[$Msg::idioma][22];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 1.6 -- Configuraci&oacute;n PAM</h3>\n";
+print R $Msg::msg[$Msg::idioma][22];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -28,108 +31,171 @@ $CMDDIFOK=`grep -e password /etc/pam.d/system-auth | grep difok | cut -d= -f2 | 
 
 
 if  ($CMDMINLEN eq ""){
-        print BOLD, RED, "\nNegativo:", RESET . " El parametro minlen no se encuentra configurado\n";
-        print F "<p class=\"negativo\">Negativo: El par&aacute;metro minlen no se encuentra configurado</p>\n";
-		print R "<p>Recomendamos configurar el par&aacute;metro minlen con el valor 8</p>\n";
+        print $Msg::msg[$Msg::idioma][23];
+        print F $Msg::msg[$Msg::idioma][24];
+		print R $Msg::msg[$Msg::idioma][25];
     }
 elsif ($CMDMINLEN == 8){
 }
 
 else {
-		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDMINLEN del parametro minlen se encuentra mal configurado\n";
-        print F "<p class=\"negativo\">Negativo: El valor $CMDMINLEN del par&aacute;metro minlen se encuentra mal configurado</p>\n";
-		print R "<p>Recomendamos configurar el valor 8 en el par&aacute;metro minlen</p>\n";
+
+		if ($miidioma eq "es") {
+			print "El valor $CMDMINLEN del parámetro MINLEN se encuentra mal configurado\n";
+			print F "<p class=\"negativo\">Negativo: El valor $CMDMINLEN del parámetro MINLEN se encuentra mal configurado</p>\n";
+			print R "<p>Recomendamos configurar el valor 8 en el parámetro MINLENv</p>\n";
+		}
+			 
+		else {
+			print "The value assigned to the parameter MINLEN ($CMDMINLEN) is inadequate\n";
+			print F "<p class=\"negativo\">Negative: The value assigned to the parameter MINLEN ($CMDMINLEN) is inadequate</p>\n";
+			print R "<p>The recommended value for the MINLEN parameter is 8</p>\n";
+		}
+		
 }
 
 
 
 if  ($CMRETRY eq ""){
-        print BOLD, RED, "\nNegativo:", RESET . " El parametro retry no se encuentra configurado\n";
-        print F "<p class=\"negativo\">Negativo: El par&aacute;metro retry no se encuentra configurado</p>\n";
-		print R "<p>Recomendamos configurar el par&aacute;metro retry con el valor 3</p>\n";
+        print $Msg::msg[$Msg::idioma][26];
+        print F $Msg::msg[$Msg::idioma][27];
+		print R $Msg::msg[$Msg::idioma][28];
     }
 elsif ($CMRETRY == 3){
 }
 
 else {
-		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMRETRY del parametro retry se encuentra mal configurado\n";
-        print F "<p class=\"negativo\">Negativo: El valor $CMRETRY del par&aacute;metro retry se encuentra mal configurado</p>\n";
-		print R "<p>Recomendamos configurar el valor 3 en el par&aacute;metro retry</p>\n";
+			if ($miidioma eq "es") {
+			print "El valor $CMRETRY del parámetro RETRY se encuentra mal configurado\n";
+			print F "<p class=\"negativo\">Negativo: El valor $CMRETRY del parámetro RETRY se encuentra mal configurado</p>\n";
+			print R "<p>Recomendamos configurar el valor 8 en el parámetro RETRY</p>\n";
+		}
+			 
+		else {
+			print "The value assigned to the parameter MINLEN ($CMRETRY) is inadequate\n";
+			print F "<p class=\"negativo\">Negative: The value assigned to the parameter MINLEN ($CMRETRY) is inadequate</p>\n";
+			print R "<p>The recommended value for the RETRY parameter is 3</p>\n";
+		}
 }
     
 	
 if  ($CMDUCREDIT eq ""){
-        print BOLD, RED, "\nNegativo:", RESET . " El parametro ucredit no se encuentra configurado\n";
-        print F "<p class=\"negativo\">Negativo: El par&aacute;metro ucredit no se encuentra configurado</p>\n";
-		print R "<p>Recomendamos configurar el par&aacute;metro ucredit con el valor -1</p>\n";
+       print $Msg::msg[$Msg::idioma][29];
+        print F $Msg::msg[$Msg::idioma][30];
+		print R $Msg::msg[$Msg::idioma][31];
     }
 elsif ($CMDUCREDIT == -1){
 }
 
 else {
-		print BOLD, RED, "Negativo:", RESET . " El valor $CMDUCREDIT del parametro ucredit se encuentra mal configurado\n";
-        print F "<p class=\"negativo\">Negativo: El valor $CMDUCREDIT del par&aacute;metro ucredit se encuentra mal configurado</p>\n";
-		print R "<p>Recomendamos configurar el valor -1 en el par&aacute;metro ucredit</p>\n";
+		if ($miidioma eq "es") {
+			print "El valor $CMDUCREDIT del parámetro UCREDIT se encuentra mal configurado\n";
+			print F "<p class=\"negativo\">Negativo: El valor $CMDUCREDIT del parámetro UCREDIT se encuentra mal configurado</p>\n";
+			print R "<p>Recomendamos configurar el valor (-1) en el parámetro UCREDIT</p>\n";
+		}
+			 
+		else {
+			print "The value assigned to the parameter UCREDIT ($CMDUCREDIT) is inadequate\n";
+			print F "<p class=\"negativo\">Negative: The value assigned to the parameter UCREDIT ($CMDUCREDIT) is inadequate</p>\n";
+			print R "<p>The recommended value for the UCREDIT parameter is -1</p>\n";
+		}
 }
 
+
+
 if  ($CMDDCREDIT eq ""){
-        print BOLD, RED, "\nNegativo:", RESET . " El parametro dcredit no se encuentra configurado\n";
-        print F "<p class=\"negativo\">Negativo: El par&aacute;metro dcredit no se encuentra configurado</p>\n";
-		print R "<p>Recomendamos configurar el par&aacute;metro dcredit con el valor -1</p>\n";
+        print $Msg::msg[$Msg::idioma][32];
+        print F $Msg::msg[$Msg::idioma][33];
+		print R $Msg::msg[$Msg::idioma][34];
     }
 elsif ($CMDDCREDIT == -1){
 }
 
 else {
-		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDDCREDIT del parametro dcredit se encuentra mal configurado\n";
-        print F "<p class=\"negativo\">Negativo: El valor $CMDDCREDIT del par&aacute;metro dcredit se encuentra mal configurado</p>\n";
-		print R "<p>Recomendamos configurar el valor -1 en el par&aacute;metro dcredit</p>\n";
+		if ($miidioma eq "es") {
+			print "El valor $CMDDCREDIT del parámetro DCREDIT se encuentra mal configurado\n";
+			print F "<p class=\"negativo\">Negativo: El valor $CMDDCREDIT del parámetro DCREDIT se encuentra mal configurado</p>\n";
+			print R "<p>Recomendamos configurar el valor (-1) en el parámetro DCREDIT</p>\n";
+		}
+			 
+		else {
+			print "The value assigned to the parameter DCREDIT ($CMDDCREDIT) is inadequate\n";
+			print F "<p class=\"negativo\">Negative: The value assigned to the parameter DCREDIT ($CMDDCREDIT) is inadequate</p>\n";
+			print R "<p>The recommended value for the DCREDIT parameter is -1</p>\n";
+		}
 }
 
+
+
+
 if  ($CMDLCREDIT eq ""){
-        print BOLD, RED, "\nNegativo:", RESET . " El parametro lcredit no se encuentra configurado\n";
-        print F "<p class=\"negativo\">Negativo: El par&aacute;metro lcredit no se encuentra configurado</p>\n";
-		print R "<p>Recomendamos configurar el par&aacute;metro lcredit con el valor -1</p>\n";
+         print $Msg::msg[$Msg::idioma][35];
+        print F $Msg::msg[$Msg::idioma][36];
+		print R $Msg::msg[$Msg::idioma][37];
     }
 elsif ($CMDLCREDIT == -1){
 }
 
 else {
-		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDLCREDIT del parametro lcredit se encuentra mal configurado\n";
-        print F "<p class=\"negativo\">Negativo: El valor $CMDLCREDIT del par&aacute;metro lcredit se encuentra mal configurado</p>\n";
-		print R "<p>Recomendamos configurar el valor -1 en el par&aacute;metro lcredit</p>\n";
+		if ($miidioma eq "es") {
+			print "El valor $CMDLCREDIT del parámetro LCREDIT se encuentra mal configurado\n";
+			print F "<p class=\"negativo\">Negativo: El valor $CMDLCREDIT del parámetro LCREDIT se encuentra mal configurado</p>\n";
+			print R "<p>Recomendamos configurar el valor (-1) en el parámetro LCREDIT</p>\n";
+		}
+			 
+		else {
+			print "The value assigned to the parameter LCREDIT ($CMDLCREDIT) is inadequate\n";
+			print F "<p class=\"negativo\">Negative: The value assigned to the parameter LCREDIT ($CMDLCREDIT) is inadequate</p>\n";
+			print R "<p>The recommended value for the LCREDIT parameter is -1</p>\n";
+		}
 }
 
 
 
 if  ($CMDOCREDIT eq ""){
-        print BOLD, RED, "\nNegativo:", RESET . " El parametro ocredit no se encuentra configurado\n";
-        print F "<p class=\"negativo\">Negativo: El par&aacute;metro ocredit no se encuentra configurado</p>\n";
-		print R "<p>Recomendamos configurar el par&aacute;metro ocredit con el valor -1</p>\n";
+        print $Msg::msg[$Msg::idioma][38];
+        print F $Msg::msg[$Msg::idioma][39];
+		print R $Msg::msg[$Msg::idioma][40];
     }
 elsif ($CMDOCREDIT == -1){
 }
 
 else {
-		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDOCREDIT del parametro ocredit se encuentra mal configurado\n";
-        print F "<p class=\"negativo\">Negativo: El valor $CMDOCREDIT del par&aacute;metro ocredit se encuentra mal configurado</p>\n";
-		print R "<p>Recomendamos configurar el valor -1 en el par&aacute;metro ocredit</p>\n";
+		if ($miidioma eq "es") {
+			print "El valor $CMDOCREDIT del parámetro OCREDIT se encuentra mal configurado\n";
+			print F "<p class=\"negativo\">Negativo: El valor $CMDOCREDIT del parámetro OCREDIT se encuentra mal configurado</p>\n";
+			print R "<p>Recomendamos configurar el valor (-1) en el parámetro OCREDIT</p>\n";
+		}
+			 
+		else {
+			print "The value assigned to the parameter OCREDIT ($CMDOCREDIT) is inadequate\n";
+			print F "<p class=\"negativo\">Negative: The value assigned to the parameter OCREDIT ($CMDOCREDIT) is inadequate</p>\n";
+			print R "<p>The recommended value for the OCREDIT parameter is -1</p>\n";
+		}
 }
 
 
 
 if  ($CMDDIFOK eq ""){
-        print BOLD, RED, "\nNegativo:", RESET . " El parametro difok no se encuentra configurado\n";
-        print F "<p class=\"negativo\">Negativo: El par&aacute;metro difok no se encuentra configurado</p>\n";
-		print R "<p>Recomendamos configurar el par&aacute;metro difok con el valor 2</p>\n";
+       print $Msg::msg[$Msg::idioma][41];
+        print F $Msg::msg[$Msg::idioma][42];
+		print R $Msg::msg[$Msg::idioma][43];
     }
 elsif ($CMDDIFOK == 2){
 }
 
 else {
-		print BOLD, RED, "\nNegativo:", RESET . " El valor $CMDDIFOK del parametro difok se encuentra mal configurado\n";
-        print F "<p class=\"negativo\">Negativo: El valor $CMDDIFOK del par&aacute;metro difok se encuentra mal configurado</p>\n";
-		print R "<p>Recomendamos configurar el valor 2 en el par&aacute;metro difok</p>\n";
+		if ($miidioma eq "es") {
+			print "El valor $CMDDIFOK del parámetro DIFOK se encuentra mal configurado\n";
+			print F "<p class=\"negativo\">Negativo: El valor $CMDDIFOK del parámetro DIFOK se encuentra mal configurado</p>\n";
+			print R "<p>Recomendamos configurar el valor (-1) en el parámetro DIFOK</p>\n";
+		}
+			 
+		else {
+			print "The value assigned to the parameter DIFOK ($CMDDIFOK) is inadequate\n";
+			print F "<p class=\"negativo\">Negative: The value assigned to the parameter DIFOK ($CMDDIFOK) is inadequate</p>\n";
+			print R "<p>The recommended value for the DIFOK parameter is 2</p>\n";
+		}
 }
 
 

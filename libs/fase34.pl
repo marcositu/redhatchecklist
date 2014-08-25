@@ -1,19 +1,26 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 
 
 # ----------------------------------------------------------------------------------------
-# Fase 3.4 -- Archivos sin owner y group
+# Fase 3.4 -- Archivos sin owner y group / Files without owner and group
 # ----------------------------------------------------------------------------------------
 
 
 print "-" x 100;
-print " \nFase 3.4 -- Archivos sin owner y group\n";
-print F "<h3>Fase 3.4 -- Archivos sin owner y group</h3>\n";
+print $Msg::msg[$Msg::idioma][76];
+print F $Msg::msg[$Msg::idioma][77];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "<h3>Fase 3.4 -- Archivos sin owner y group</h3>\n";
+print R $Msg::msg[$Msg::idioma][77];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -47,11 +54,12 @@ sub wanted3 {
     !exists $uid{$uid}
     ||
     !exists $gid{$gid} and
-
-        print BOLD, RED, "\nNegativo:", RESET . " Archivo sin owner/group $name\n" and
-		print F "<p class=\"negativo\">Negativo: Archivo sin owner/group $name</p>\n" and
-		print R "<p>Asignarle un owner/group a $name</p>\n"
-        }
+	
+	print ($miidioma eq "es" ? "\n$name sin owner/group\n" : "\n$name without owner/group\n") and 
+	print F ($miidioma eq "es" ? "<p class=\"negativo\">$name sin owner/group</p>\n" : "<p class=\"negativo\">$name without owner/group</p>\n") and
+	print R ($miidioma eq "es" ? "<p>Asignarle un owner/group a $name</p>\n" : "<p>Assign the owner group to $name</p>\n");      
+		
+}
 print F "</div>\n";
 print F "</div>\n";	
 

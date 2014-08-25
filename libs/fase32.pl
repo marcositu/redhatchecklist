@@ -1,17 +1,24 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
-
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 # ----------------------------------------------------------------------------------------
-# Fase 3.2 -- Verificar Archivos con write para todos los usuarios
+# Fase 3.2 -- Verificar Archivos con write para todos los usuarios / Verify files with write privilege for all users
 # ----------------------------------------------------------------------------------------
 
+print $Msg::msg[$Msg::idioma][72];
 
-print " \nFase 3.1 -- Verificar archivos/directorios con permisos de escritura para todos los usuarios\n";
-print F "<h3>Fase 3.2 -- Verificar archivos/directorios con permisos de escritura para todos los usuarios</h3>\n";
+
+print F $Msg::msg[$Msg::idioma][73];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "<h3>Fase 3.2 -- Verificar archivos/directorios con permisos de escritura para todos los usuarios</h3>\n";
+
+print R $Msg::msg[$Msg::idioma][73];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -35,11 +42,13 @@ sub wanted1 {
     (
         (($mode & 02) == 02) and
         ! (($mode & 01000) == 01000)
-    ) and
+    )and
 
-    print BOLD,RED, "\nNegativo:", RESET . " Archivo/Directorio con permisos de escritura para todos los usuarios $name\n" and
-print F "<p class=\"negativo\">Negativo: Archivo/Directorio con permisos de escritura para todos los usuarios $name</p>\n" and
-print R "<p>Verificar si el permisos de escritura para todos los usuarios del $name es el requerido</p>\n";
+	
+print ($miidioma eq "es" ? "\n$name con permisos de escritura para todos los usuarios\n" : "\n$name with WRITE privileges for all users\n") and 
+print F ($miidioma eq "es" ? "<p class=\"negativo\">$name con permisos de escritura para todos los usuarios</p>\n" : "<p class=\"negativo\">$name with WRITE privileges for all users</p>\n") and
+print R ($miidioma eq "es" ? "<p>Verificar si el permisos de escritura para todos los usuarios del $name es el requerido</p>\n" : "<p>Verify $name with WRITE privileges for all users</p>\n");	
+
 }
 
 print F "</div>\n";

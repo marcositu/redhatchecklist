@@ -1,19 +1,22 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
-
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 # ----------------------------------------------------------------------------------------
-# Fase 3.0 -- Verificar permisos en archivos y directorios
+# Fase 3.0 -- Verificar permisos en archivos y directorios / Verify file and directory permissions
 # ----------------------------------------------------------------------------------------
 
-
-print"\n----------------------------------------------------------------------------------------------------------------\n";
-print " \nFase 3.0 -- Verificar permisos en archivos y directorios\n";
-print F "  <h3>Fase 3.0 -- Verificar permisos en archivos y directorios</h3>\n";
+print $Msg::msg[$Msg::idioma][68];
+print F $Msg::msg[$Msg::idioma][69];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 3.0 -- Verificar permisos en archivos y directorios</h3>\n";
+print R $Msg::msg[$Msg::idioma][69];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -32,13 +35,26 @@ if ( "$comando"  eq "root" ){
  }
 else
 {
-print BOLD, RED, "\nNegativo:", RESET . " El archivo $varb tiene como owner $comando\n";
+
+if ($miidioma eq "es") {
+			
+print "\nEl archivo $varb tiene como owner $comando\n";
 print F "<p class=\"negativo\">Negativo: El archivo $varb tiene como owner $comando</p>\n";
 print R "<p>Se recomienda analizar el owner del archivo $varb ya que tiene como owner $comando</p>\n";
+		}
+			 
+		else {
+			
+print "\nThe $varb file's owner is $comando\n";
+print F "<p class=\"negativo\">Negative: The $varb file's owner is $comando</p>\n";
+print R "<p>It is recommended to analyze $varb file's owner. The current owner is $comando</p>\n";
+		}
+
 }
 }
 }
 my @directorios = ("/bin", "/boot", "/dev",  "/etc", "/etc/cron.daily", "/etc/cron.hourly", "/etc/cron.monthly", "/etc/cron.weekly", "/home/", "/lib/", "/mnt/", "/sbin/", "/usr/", "/usr/bin/", "/usr/sbin/", "/var/");
+
 
 foreach $varb (@directorios){
 if (-e $varb){
@@ -52,9 +68,19 @@ if ( "$comando1"  eq "root" ){
         }
 else
 {
-print BOLD, RED, "\nNegativo:", RESET . " El directorio $varb tiene como owner $comando1\n";
+if ($miidioma eq "es") {
+			
+print "\nEl directorio $varb tiene como owner $comando1\n";
 print F "<p class=\"negativo\">Negativo: El directorio $varb tiene como owner $comando1</p>\n";
 print R "<p>Se recomienda analizar el owner del directorio $varb ya que tiene como owner $comando1</p>\n";
+		}
+			 
+		else {
+			
+print "\nThe $varb directory's owner is $comando1\n";
+print F "<p class=\"negativo\">Nevative: The $varb directory's owner is $comando1</p>\n";
+print R "<p>It is recommended to analyze $varb directory's owner. The current owner is $comando1</p>\n";
+		}
 }
 }
 }
@@ -72,9 +98,19 @@ if ( "$comando2"  eq "-rw-r--r--" ){
         }
 else
 {
-print BOLD, RED, "\nNegativo:", RESET . " El archivo $varb tiene como permisos $comando2\n";
+if ($miidioma eq "es") {
+			
+print "\nEl archivo $varb tiene como permisos $comando2\n";
 print F "<p class=\"negativo\">Negativo: El archivo $varb tiene como permisos $comando2</p>\n";
 print R "<p>Se recomienda analizar los permisos del archivo $varb ya que tiene como permisos $comando2</p>\n";
+		}
+			 
+		else {
+			
+print "\nThe $varb file's permission is $comando2\n";
+print F "<p class=\"negativo\">Negative: The $varb file's permission is $comando2</p>\n";
+print R "<p>It is recommended to analyze $varb file's permission. The current permission is $comando2</p>\n";
+		}
 }
 }
 }
@@ -92,9 +128,19 @@ if ( "$comando3"  eq "drwxr-xr-x" ){
         }
 else
 {
-print BOLD, RED, "\nNegativo:", RESET . " El directorio $varb tiene como permisos $comando3\n";
+if ($miidioma eq "es") {
+			
+print "\nEl directorio $varb tiene como permisos $comando3\n";
 print F "<p class=\"negativo\">Negativo: El directorio $varb tiene como permisos $comando3</p>\n";
 print R "<p>Se recomienda analizar los permisos del directorio $varb ya que tiene como permisos $comando3</p>\n";
+		}
+			 
+		else {
+			
+print "\nThe $varb file's permission is $comando2\n";
+print F "<p class=\"negativo\">Negative: The $varb directory's permission is $comando3</p>\n";
+print R "<p>It is recommended to analyze $varb directory's permission. The current permission is $comando3</p>\n";
+		}
 }
 }
 }
@@ -105,14 +151,25 @@ foreach $varb (@archivos4){
 if (-e $varb){
 $comando4 = (split " ",( qx(ls -l $varb ))[0] )[0];
 chomp $comando4;
-if ( "$comando4"  eq "-rw-r-----" ){
+if ( "$comando4"  eq "-r--------" ){
 #print BOLD, GREEN, "Positivo:", RESET . " El archivo $varb tiene como permisos -rw-r-----\n";
 #print F "<p class=\"positivo\">Positivo: El archivo $varb tiene como permisos -rw-r-----</p>\n";
         }
 else
 {
-print BOLD, RED, "\nNegativo:", RESET . " El archivo $varb tiene como permisos $comando4\n";
+if ($miidioma eq "es") {
+			
+print "\nEl archivo $varb tiene como permisos $comando4\n";
 print F "<p class=\"negativo\">Negativo: El archivo $varb tiene como permisos $comando4</p>\n";
+print R "<p>Se recomienda analizar los permisos del directorio $varb ya que tiene como permisos $comando4</p>\n";
+		}
+			 
+		else {
+			
+print "\nThe $varb file's permission is $comando4\n";
+print F "<p class=\"negativo\">Negative: The $varb file's permission is $comando4</p>\n";
+print R "<p>It is recommended to analyze $varb file's permission. The current permission is $comando4</p>\n";
+		}
 }
 }
 }

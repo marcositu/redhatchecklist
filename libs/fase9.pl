@@ -1,18 +1,24 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 
 # ----------------------------------------------------------------------------------------
 # Fase 9.0 -- IPTABLES
 # ----------------------------------------------------------------------------------------
 
-print "-" x 100;
-print " \nFase 9.0 -- IPTABLES\n";
-print F "  <h3>Fase 9.0 -- IPTABLES</h3>\n";
+print $Msg::msg[$Msg::idioma][97];
+
+print F $Msg::msg[$Msg::idioma][98];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 9.0 -- IPTABLES</h3>\n";
+print R $Msg::msg[$Msg::idioma][98];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -27,15 +33,15 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
-print F"<p>$linea</p>\n";
+    print "\n$linea\n";
+	print F"<p>$linea</p>\n";
 } 
 close INFILE;
 
 unlink '/tmp/iptables_check.txt';			
 
 
-print R "<p>Se recomienda analizar las listas de acceso</p>\n";
+print R $Msg::msg[$Msg::idioma][99];
 
 print F "</div>\n";
 print F "</div>\n";

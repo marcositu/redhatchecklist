@@ -1,18 +1,23 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
-
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 # ----------------------------------------------------------------------------------------
-# Fase 1.8 -- Ultimos comandos ejecutados por los usuarios
+# Fase 1.8 -- Ultimos comandos ejecutados por los usuarios / Recent commands executed by users
 # ----------------------------------------------------------------------------------------
 
-print "-" x 100;
-print " \nFase 1.8 -- Ultimos comandos ejecutados por los usuarios\n";
-print F "  <h3>Fase 1.8 -- &Uacute;ltimos comandos ejecutados por los usuarios</h3>\n";
+
+print $Msg::msg[$Msg::idioma][47];
+print F $Msg::msg[$Msg::idioma][48];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 1.8 -- &Uacute;ltimos comandos ejecutados por los usuarios</h3>\n";
+print R $Msg::msg[$Msg::idioma][48];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 print "-" x 100;
@@ -32,7 +37,7 @@ while (<SINPASSWD>) {
                         my $linea;
                         while ( $linea = <INFILE>) {
                                 chomp($linea);
-								print BOLD, WHITE, "\nInformacion:", RESET . " $user:\n$linea\n";
+								print "\n$user:\n$linea\n";
                                 print F"<p><b>$user:</b>\n$linea</p>\n";
                         }
                 }
@@ -49,7 +54,7 @@ close (SINPASSWD2);
 print F "</div>\n";
 print F "</div>\n";
 
-print R "<p>Verificar que los comandos ejecutados sean propios de la administraci&oacute;n del servidor</p>\n";
+print R $Msg::msg[$Msg::idioma][49];
 
 
 print R "</div>\n";

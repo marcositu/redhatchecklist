@@ -1,18 +1,23 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
-
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 # ----------------------------------------------------------------------------------------
-# Fase 1.9 -- Relaciones de confianza
+# Fase 1.9 -- Relaciones de confianza / Trust relationships
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 1.9 -- Relaciones de confianza\n";
-print F "  <h3>Fase 1.9 -- Relaciones de confianza</h3>\n";
+print $Msg::msg[$Msg::idioma][50];
+print F $Msg::msg[$Msg::idioma][51];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 1.9 -- Relaciones de confianza</h3>\n";
+print R $Msg::msg[$Msg::idioma][51];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 print "-" x 100;
@@ -32,8 +37,8 @@ while (<SINPASSWD>) {
                         my $linea;
                         while ( $linea = <INFILE>) {
                                 chomp($linea);
-								print BOLD, WHITE, "\nInformacion:", RESET . " usuario:$user / archivo: $filename / contenido: $linea<\n";
-                                print F"<p><b>usuario:$user</b> / <b>archivo</b>:$filename / <b>contenido</b>:$linea</p>\n";
+								print "\nUser:$user / File: $filename / Data: $linea<\n";
+                                print F"<p><b>User:$user</b> / <b>File</b>:$filename / <b>Data</b>:$linea</p>\n";
                         }
                 }
         }
@@ -46,6 +51,6 @@ print F "</div>\n";
 print F "</div>\n";
 
 
-print R "<p>En el caso que existen relaciones de confianza, verificar que sean las requeridas.</p>\n";
+print R $Msg::msg[$Msg::idioma][52];
 print R "</div>\n";
 print R "</div>\n";

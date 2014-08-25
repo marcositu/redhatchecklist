@@ -1,0 +1,41 @@
+# Fase 10.0 -- Servicios / Services
+do 'fase10.pl'; 
+
+# Fase 11.0 -- Procesos / Processes
+do 'fase1111.pl'; 
+
+# Fase 12.0 -- Conexiones / Connections
+do 'fase1212.pl'; 
+
+# Fase 13.0 -- Hash de binarios / Binary Hash
+do 'fase1313.pl'; 
+
+# Fase 14.0 -- Configuracion de Sudoers / Sudoers configuration
+do 'fase1414.pl'; 
+
+# Fase 15.0 -- Cron.Daily
+do 'fase1515.pl'; 
+
+# Fase 16.0 -- Versiones de softwares / Software versiones
+do 'fase1616.pl'; 
+
+# Fase 17.0 -- Configuración de Red / Network configuration
+do 'fase1717.pl'; 
+
+# Fase 17.1 -- Verificación de rutas / Route verification
+do 'fase171.pl'; 
+
+# Fase 17.2 -- Verificacion configuración sysctl / Sysctl configuration
+do 'fase172.pl'; 
+
+# Fase 18.0 -- Verificar el nivel de inittab / Verify the inittab level
+do 'fase1818.pl'; 
+
+# Fase 18.1 -- Verificar que no este activo ctrlaltdel en inittab / Verify that ctrlaltdel is not active in inittab
+do 'fase1818.pl'; 
+
+# Fase 19.0 -- Verificar configuracion samba / Samba configuration
+do 'fase119.pl'; 
+
+# Fase 20.0 -- Verificar sincronización NTP / NTP sincronization
+do 'fase200.pl'; 

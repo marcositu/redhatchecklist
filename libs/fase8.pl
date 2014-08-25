@@ -1,17 +1,24 @@
-use Term::ANSIColor qw(:constants);
- no warnings;
+#!/usr/bin/perl -w
+
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 
 # ----------------------------------------------------------------------------------------
 # Fase 8.0 -- SeLinux
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 8.0 -- SeLinux\n";
-print F "  <h3>Fase 8.0 -- SeLinux</h3>\n";
+print $Msg::msg[$Msg::idioma][92];
+print F $Msg::msg[$Msg::idioma][93];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 8.0 -- SeLinux</h3>\n";
+print R $Msg::msg[$Msg::idioma][93];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -21,12 +28,12 @@ print "-" x 100;
 $selinuxon= `/usr/sbin/sestatus`;
 
 if($selinuxon =~ /disabled/){
-print BOLD, RED, "\nNegativo:", RESET . " SeLinux se encuentra desactivado\n";
-print F "<p class=\"negativo\">SeLinux se encuentra desactivado</p>\n";
-
+print $Msg::msg[$Msg::idioma][94];
+print F $Msg::msg[$Msg::idioma][95];
+print R $Msg::msg[$Msg::idioma][96];
 }
 
-print R "<p>Se recomienda configurar y activar SeLinux</p>\n";
+
 print F "</div>\n";
 print F "</div>\n";
 

@@ -1,18 +1,25 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 
 
 # ----------------------------------------------------------------------------------------
-# Fase 1.11 -- Verificar que no existan usuarios con Grupo ID 0
+# Fase 1.11 -- Verificar que no existan usuarios con Grupo ID 0 / Verify that there are no users with Group ID 0
 # ----------------------------------------------------------------------------------------
-
 print "-" x 100;
-print " \nFase 1.11 -- Verificar que no existan usuarios con Grupo ID 0\n";
-print F "  <h3>Fase 1.11 -- Verificar que no existan usuarios con Grupo ID 0</h3>\n";
+print $Msg::msg[$Msg::idioma][56];
+
+print F $Msg::msg[$Msg::idioma][57];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 1.11 -- Verificar que no existan usuarios con Grupo ID 0</h3>\n";
+print R $Msg::msg[$Msg::idioma][57];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -29,9 +36,18 @@ while (<ID0PASSWD>) {
 	   {
 			if ($id0 == 0) {
 		 
-				print BOLD, RED, "\nNegativo:", RESET . " Negativo: El usuario $user  tiene definido Grupo ID 0\n";
+		 if ($miidioma eq "es") {
+			print "\nEl usuario $user tiene definido Grupo ID 0\n";
 				print F "<p class=\"negativo\">El usuario $user  tiene definido Grupo ID 0</p>\n";
 				print R "<p>El usuario $user  tiene definido Grupo ID 0. Recomendamos analizar si los permisos asignados son los correctos</p>\n";
+		}
+			 
+		else {
+			print "\nThe user $user has ID 0 configured\n";
+				print F "<p class=\"negativo\">The user $user has ID 0 configured</p>\n";
+				print R "<p>The user $user has ID 0 configured. It is recommended to analyze if the assigned privileges are correct.</p>\n";
+		}
+		 
 			}
 		}
 		}

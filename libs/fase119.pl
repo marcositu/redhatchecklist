@@ -1,17 +1,24 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 
 # ----------------------------------------------------------------------------------------
-# Fase 19.0 -- Verificar configuracion samba
+# Fase 19.0 -- Verificar configuracion samba / Samba configuration
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 19.0 -- Verificar configuración samba\n";
-print F "  <h3>Fase 19.0 -- Verificar configuraci&oacute;n samba</h3>\n";
+print $Msg::msg[$Msg::idioma][133];
+print F $Msg::msg[$Msg::idioma][134];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 19.0 -- Verificar configuraci&oacute;n samba</h3>\n";
+print R $Msg::msg[$Msg::idioma][134];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -31,18 +38,18 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
+    print "\n$linea\n";
 	print F "<p>$linea</p>\n";
 } 
 close INFILE;
 
 unlink '/tmp/smbcheck_check.txt';		
 
-print R "<p>Se recomienda analizar si la configuraci&oacute;n de SMB es la esperada.</p>\n";
+print R $Msg::msg[$Msg::idioma][135];
 
    }
    else {
-   print F "<p>No se identific&oacute; la configuraci&oacute;n de Samba.</p>\n";
+   print F $Msg::msg[$Msg::idioma][136];
    }
 
 

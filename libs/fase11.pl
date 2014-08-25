@@ -1,16 +1,21 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
-
+use lib 'libs';
+use Msg;
+no warnings;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
 
 # ----------------------------------------------------------------------------------------
-# Fase 1.1 -- Comprobacion de Usuarios/Grupos
+# Fase 1.1 -- Comprobacion de Usuarios/Grupos / Users/Groups check
 # ----------------------------------------------------------------------------------------
-
 print "-" x 100;
-print " \nFase 1.1 -- Comprobacion de Usuarios/Grupos \n";
-print F "<h3>Fase 1.1 -- Comprobacion de Usuarios/Grupos</h3>\n";
-print R "<h3>Fase 1.1 -- Comprobacion de Usuarios/Grupos</h3>\n";
+print $Msg::msg[$Msg::idioma][9];
+print F $Msg::msg[$Msg::idioma][10];
+print R $Msg::msg[$Msg::idioma][10];
 print "-" x 100;
+print "\n";
 use diagnostics;
 print F "<div>\n";
 print F "<div class=\"content\">\n";
@@ -64,8 +69,15 @@ for my $uid ( keys %usuarios ) {
         #print "\tGrupo: $gid, $grupos{$gid}->[0]\n";
 
         if ($gid < 500) {
-        	 print BOLD, WHITE, "\nInformacion:", RESET . " El usuario $nombre pertenece al grupo $grupos{$gid}->[0] ($gid)\n";
+			if ($miidioma eq 'es')
+			{
+			print "El usuario $nombre pertenece al grupo $grupos{$gid}->[0] ($gid)\n";
              print F "<p>El usuario $nombre pertenece al grupo $grupos{$gid}->[0] ($gid)\n</p>\n";
+			 }
+		else {
+			 print "The username $nombre belongs to the group $grupos{$gid}->[0] ($gid)\n",
+			 print F "<p>The username $nombre belongs to the group $grupos{$gid}->[0] ($gid)</p>\n",
+		}
 
         }
     }
@@ -73,6 +85,6 @@ for my $uid ( keys %usuarios ) {
 print F "</div>\n";
 print F "</div>\n";
 
-print R "<p>Recomendamos analizar si los grupos creados y la asignaci&oacute;n de los usuarios es la requerida.\n</p>\n";
+print R $Msg::msg[$Msg::idioma][11];
 print R "</div>\n";
 print R "</div>\n";

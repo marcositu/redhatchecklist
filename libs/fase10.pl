@@ -1,15 +1,22 @@
+#!/usr/bin/perl -w
+
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 # ----------------------------------------------------------------------------------------
 # Fase 10.0 -- Servicios
 # ----------------------------------------------------------------------------------------
-
 print "-" x 100;
-print " \nFase 10.0 -- Servicios\n";
-print F "  <h3>Fase 10.0 -- Servicios</h3>\n";
+print $Msg::msg[$Msg::idioma][100];
+print F $Msg::msg[$Msg::idioma][101];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 10.0 -- Servicios</h3>\n";
+print R $Msg::msg[$Msg::idioma][101];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -23,8 +30,8 @@ open INFILE,$filename;
 my $linea;
 while ( $linea = <INFILE>) {
     chomp($linea); 
-    print BOLD, WHITE, "\nInformacion:", RESET . " $linea\n";
-print F"<p>$linea</p>\n";
+    print "\n$linea\n";
+	print F "<p>$linea</p>\n";
 } 
 close INFILE;
 
@@ -33,6 +40,6 @@ unlink '/tmp/servicios_check.txt';
 print F "</div>\n";
 print F "</div>\n";
 
-print R"<p>Verificar si los servicios activos son los esperamos</p>\n";
+print R $Msg::msg[$Msg::idioma][102];
 print R "</div>\n";
 print R "</div>\n";

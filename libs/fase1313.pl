@@ -1,16 +1,24 @@
-use Term::ANSIColor qw(:constants);
+#!/usr/bin/perl -w
+
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 
 # ----------------------------------------------------------------------------------------
-# Fase 13.0 -- Hash de binarios
+# Fase 13.0 -- Hash de binarios / Binary Hash
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 13.0 -- Hash de binarios\n";
-print F "  <h3>Fase 13.0 -- Hash de binarios</h3>\n";
+print $Msg::msg[$Msg::idioma][109];
+print F $Msg::msg[$Msg::idioma][110];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 13.0 -- Hash de binarios</h3>\n";
+print R $Msg::msg[$Msg::idioma][110];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -44,15 +52,14 @@ my $fname = $varb;
 my $md5 =  md5sum($fname);
 
 if($md5 ne ""){
-                print $md5." ".$fname."\n";
-				print BOLD, WHITE, "\nInformacion:", RESET . $md5." ".$fname."\n";
+                print "\n" . $md5." ".$fname."\n";
 				print F"<p>$md5 $fname</p>\n";
         }
 		
 }
 
 
-print R "<p>Se recomienda analizar los hash listados en el informe en el sitio de Virus Total</p>\n";
+print R $Msg::msg[$Msg::idioma][111];
 
 print F "</div>\n";
 print F "</div>\n";

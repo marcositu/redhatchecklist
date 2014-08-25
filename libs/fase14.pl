@@ -1,18 +1,23 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
 
 
 # ----------------------------------------------------------------------------------------
-# Fase 1.4 -- Verificacion del archivo login.defs
+# Fase 1.4 -- Verificacion del archivo login.defs / Verify the login.defs file
 # ----------------------------------------------------------------------------------------
 
-print "-" x 100;
-print " \nFase 1.4 -- Verificacion del archivo login.defs\n";
-print F "  <h3>Fase 1.4 -- Verificaci&oacute;n del archivo login.defs</h3>\n";
+print $Msg::msg[$Msg::idioma][16];
+print F $Msg::msg[$Msg::idioma][17];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 1.4 -- Verificaci&oacute;n del archivo login.defs</h3>\n";
+print R $Msg::msg[$Msg::idioma][17];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -64,18 +69,32 @@ print "-" x 100;
                 if ($valor_actual_de{$parametro} eq $valores_correctos_ref->{$parametro}) {
                     #print BOLD, GREEN, 'Positivo: ', RESET, "El valor del parametro $parametro es correcto\n";
                 }
-                else {
-                    print BOLD, RED  . "\nNegativo: ". RESET, "El valor del parametro $parametro es incorrecto: [$valor_actual_de{$parametro}]\n";
-						print F "<p class=\"negativo\">Negativo: El valor $valor_actual_de{$parametro} del par&aacute;metro $parametro es incorrecto</p>\n";
-						print R "<p>El valor $valor_actual_de{$parametro} del par&aacute;metro $parametro es incorrecto. Recomendamos configurar el par&aacute;metro con el valor $valores_correctos_ref->{$parametro}</p>\n";
-                       
-                }
+               	if ($miidioma eq "es")
+			{
+						print "\nEl valor del parámetro $parametro es incorrecto: [$valor_actual_de{$parametro}]\n";
+						print F "<p class=\"negativo\">Negativo: El valor $valor_actual_de{$parametro} del parámetro $parametro es incorrecto</p>\n";
+						print R "<p>El valor $valor_actual_de{$parametro} del parámetro $parametro es incorrecto. Recomendamos configurar el parámetro con el valor $valores_correctos_ref->{$parametro}</p>\n";
+			 }
+		else {
+						print "\nThe value for parameter $parametro is not correct: [$valor_actual_de{$parametro}]\n";
+						print F "<p class=\"negativo\">Negative: The value $valor_actual_de{$parametro} for $parametro parameter is not correct</p>\n";
+						print R "<p>The value $valor_actual_de{$parametro} for $parametro parameter is not correct. It is recommended to configure the $parametro parameter whith value $valores_correctos_ref->{$parametro}</p>\n";
+		}
             }
+				if ($miidioma eq "es")
+			{
+                print "\nNo existe el parámetro $parametro en $fichero\n";
+				print F "<p class=\"negativo\">Negativo: El parámetro $parametro no existe</p>\n";
+				print R "<p>El parámetro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro con el valor $valores_correctos_ref->{$parametro}.</p>\n";
+				
+				}
+				
 			else {
-                print BOLD, RED  .  "\nNo existe " . RESET, "el parametro $parametro en $fichero\n";
-				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
-				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro con el valor $valores_correctos_ref->{$parametro}.</p>\n";
-            }
+			print "\nNegative: The $parametro parameter does not exist in the file $fichero\n";
+				print F "<p class=\"negativo\">Negative: The $parametro parameter does not exist in the file $fichero</p>\n";
+				print R "<p>The value $valor_actual_de{$parametro} for $parametro parameter is not correct. It is recommended to configure the $parametro parameter whith value $valores_correctos_ref->{$parametro}</p>\n";
+			
+			}
 			
           }
     }

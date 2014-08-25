@@ -1,13 +1,23 @@
+#!/usr/bin/perl -w
+
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
+
 # ----------------------------------------------------------------------------------------
-# Fase 1.10 -- Usuarios con acceso al sistema
+# Fase 1.10 -- Usuarios con acceso al sistema / Users with system access
 # ----------------------------------------------------------------------------------------
-print "-" x 100;
-print " \nFase 1.10 -- Usuarios con acceso al sistema\n";
-print F "<h3>Fase 1.10 -- Usuarios con acceso al sistema</h3>\n";
+
+print $Msg::msg[$Msg::idioma][53];
+print F $Msg::msg[$Msg::idioma][54];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "<h3>Fase 1.10 -- Usuarios con acceso al sistema</h3>\n";
+print R $Msg::msg[$Msg::idioma][54];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 print "-" x 100;
@@ -34,8 +44,8 @@ while (<USER>) {
 	   if ($username eq $user)
 	   {
 		if ($passwd ne "*" && $passwd ne "!" && $passwd ne "!!") {
-        print BOLD, WHITE, "\nInformacion:", RESET . " Usuario: $user\n";
-		print F"<p>$user</p>\n";
+        print "\nUser: $user\n";
+		print F "<p>$user</p>\n";
         }
 	   }
 	   
@@ -52,7 +62,7 @@ while (<USER>) {
 close (SINPASSWD);
 close(USER);
 
-print R "<p>Verificar que los usuarios nombrados en el informe sean los requerimientos para la administraci&oacute;n del servidor.</p>\n";
+print R $Msg::msg[$Msg::idioma][55];
 
 print F "</div>\n";
 print F "</div>\n";

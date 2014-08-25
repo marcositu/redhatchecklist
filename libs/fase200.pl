@@ -1,17 +1,24 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 
 # ----------------------------------------------------------------------------------------
-# # Fase 20.0 -- Verificar sincronización NTP
+# # Fase 20.0 -- Verificar sincronización NTP / NTP sincronization
 # ----------------------------------------------------------------------------------------
 
 print "-" x 100;
-print " \nFase 20.0 -- Verificar sincronización NTP\n";
-print F "  <h3>Fase 20.0 -- Verificar sincronizaci&oacute;n NTP</h3>\n";
+print $Msg::msg[$Msg::idioma][137];
+print F $Msg::msg[$Msg::idioma][138];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 20.0 -- Verificar sincronizaci&oacute;n NTP</h3>\n";
+print R $Msg::msg[$Msg::idioma][138];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -20,19 +27,19 @@ print "-" x 100;
 $NTPCLIENTCHECK = `ntpstat | head -n1`;
 
 if  ($NTPCLIENTCHECK =~ m/synchronised to local*/){
-    print BOLD, WHITE, "\nInformacion:", RESET . " Se encuentra sincronizado localmente\n";
-	print F "<p>Se encuentra sincronizado localmente</p>";
+    print $Msg::msg[$Msg::idioma][139];
+	print F $Msg::msg[$Msg::idioma][140];
 }
 
 elsif ($NTPCLIENTCHECK =~ m/synchronised to NTP server*/){
-	print BOLD, WHITE, "\nInformacion:", RESET . " Se encuentra sincronizado por un servidor remoto\n";
-	print F "<p>Se encuentra sincronizado por un servidor remoto</p>";
+	print $Msg::msg[$Msg::idioma][141];
+	print F $Msg::msg[$Msg::idioma][142];
 }
 
 else {
-    print BOLD, RED  . "\nNegativo: ". RESET, "No se encuentra sincronizado\n";
-	print F "<p class=\"negativo\">Negativo: No se encuentra sincronizado</p>\n";
-	print R "<p>Se recomienda que el servidor se encuentra sincronizado por el NTP Server de la Empresa</p>\n";
+    print $Msg::msg[$Msg::idioma][143];
+	print F $Msg::msg[$Msg::idioma][144];
+	print R $Msg::msg[$Msg::idioma][145];
 }
 
 

@@ -1,18 +1,22 @@
+#!/usr/bin/perl -w
 
-use Term::ANSIColor qw(:constants);
- no warnings;
- 
+use lib 'libs';
+use Msg;
+use open qw(:std :utf8);
+use Encode qw(decode_utf8);
+cambia_idioma($idioma_solicitado);
+no warnings;
+
 # ----------------------------------------------------------------------------------------
-# Fase 7.0 -- Verificacion de la configuracion del servicio ssh
+# Fase 7.0 -- Verificacion de la configuracion del servicio ssh / Verify the SSH service configuration
 # ----------------------------------------------------------------------------------------
 
-print "-" x 100;
-print " \nFase 7.0 -- Verificacion de la configuracion del servicio ssh\n";
-print F "  <h3>Fase 7.0 -- Verificacion de la configuracion del servicio ssh</h3>\n";
+print $Msg::msg[$Msg::idioma][90];
+print F $Msg::msg[$Msg::idioma][91];
 print F "<div>\n";
 print F "<div class=\"content\">\n";
 
-print R "  <h3>Fase 7.0 -- Verificacion de la configuracion del servicio ssh</h3>\n";
+print R $Msg::msg[$Msg::idioma][91];
 print R "<div>\n";
 print R "<div class=\"content\">\n";
 
@@ -69,19 +73,35 @@ print "-" x 100;
                     #print BOLD, GREEN, 'Positivo: ', RESET, "El valor del parametro $parametro es correcto\n";
                 }
                 else {
-                    print
-                        BOLD, RED  , "\nNegativo: ", RESET,
-                        "El valor del parámetro $parametro es incorrecto: ",
-                        "$valor_actual_de{$parametro}\n",
-                        ;
-					print F "<p class=\"negativo\">Negativo: El valor $valor_actual_de{$parametro} del par&aacute;metro $parametro es incorrecto</p>\n";
-					print R "<p>Recomendamos configurar el valor $valores_correctos_ref->{$parametro} del par&aacute;metro $parametro</p>\n";
+				
+						if ($miidioma eq "es") {
+							print "El valor del parámetro $parametro es incorrecto: $valor_actual_de{$parametro}\n";
+							print F "<p class=\"negativo\">Negativo: El valor $valor_actual_de{$parametro} del parámetro $parametro es incorrecto</p>\n";
+							print R "<p>Recomendamos configurar el valor $valores_correctos_ref->{$parametro} del parámetro $parametro</p>\n";
+						}
+			 
+						else {
+							print "The value assigned to the parameter $parametro is inadequate: $valor_actual_de{$parametro}\n";
+							print F "<p class=\"negativo\">Negative: The value assigned to the parameter $parametro is inadequate: $valor_actual_de{$parametro}</p>\n";
+							print R "<p>The recommended configuration value $valores_correctos_ref->{$parametro} for the $parametro parameter</p>\n";
+						}
+				
                 }
             }
            else {
-                print BOLD, RED  , "\nNo existe " . RESET, "El parámetro $parametro\n";
-				print F "<p class=\"negativo\">Negativo: El par&aacute;metro $parametro no existe</p>\n";
-				print R "<p>El par&aacute;metro $parametro no existe. Recomendamos que se configure dicho par&aacute;metro con el valor $valores_correctos_ref->{$parametro}.</p>\n";
+		   
+						if ($miidioma eq "es") {
+							print "\nNo se encuentra configruado el parámetro $parametro\n";
+							print F "<p class=\"negativo\">Negativo: No se encuentra configruado el parámetro $parametro</p>\n";
+							print R "<p>No se encuentra configurado el parámetro $parametro. Recomendamos que se configure dicho parámetro con el valor $valores_correctos_ref->{$parametro}</p>\n";
+						}
+			 
+						else {
+							print "The OS event capture through syslog is not enabled\n";
+							print F "<p class=\"negativo\">Negative: The value assigned to the parameter $parametro is inadequate: $valor_actual_de{$parametro}te</p>\n";
+							print R "<p>The parameter $parameter is not configured. It is recommended to configure such parameter with value $valores_correct_ref->{$parámetro}</p>\n";
+						}
+		   
             }
         }
     }
@@ -89,9 +109,14 @@ print "-" x 100;
 	$CHECKAllowUsers=`grep "^AllowUsers" /etc/ssh/sshd_config`;
     if ($CHECKAllowUsers eq "")
 	{
-	print BOLD, RED  , "\nNo existe " . RESET, "El parámetro AllowUsers no existe en el archivo /etc/ssh/sshd_config\n";
-	print F "<p class=\"negativo\">Negativo: El par&aacute;metro AllowUsers no existe</p>\n";	
-	print R "<p>Se recomienda configurar el par&aacute;metro AllowUsers</p>\n";	
+	
+	
+	
+	
+	
+	print "El parámetro AllowUsers no existe en el archivo /etc/ssh/sshd_config\n";
+	print F "<p class=\"negativo\">Negativo: El parámetro AllowUsers no existe</p>\n";	
+	print R "<p>Se recomienda configurar el parámetro AllowUsers</p>\n";	
 	}
 	else 
 	{
@@ -102,8 +127,8 @@ print "-" x 100;
     if ($CHECKGroups eq "")
 	{
 	print BOLD, RED  , "\nNo existe " . RESET, "El parámetro AllowGroups no existe en el archivo /etc/ssh/sshd_config\n";
-	print F "<p class=\"negativo\">Negativo: El par&aacute;metro AllowGroups no existe</p>\n";	
-	print R "<p>Se recomienda configurar el par&aacute;metro AllowGroups</p>\n";
+	print F "<p class=\"negativo\">Negativo: El parámetro AllowGroups no existe</p>\n";	
+	print R "<p>Se recomienda configurar el parámetro AllowGroups</p>\n";
 	}
 	else 
 	{
@@ -113,9 +138,20 @@ print "-" x 100;
 	$CHECKDenyUsers=`grep "^DenyUsers" /etc/ssh/sshd_config`;
     if ($CCHECKDenyUsers eq "")
 	{
-	print BOLD, RED  , "\nNo existe " . RESET, "El parámetroo DenyUsers no existe en el archivo /etc/ssh/sshd_config\n";
-	print F "<p class=\"negativo\">Negativo: El par&aacute;metro DenyUsers no existe</p>\n";	
-	print R "<p>Se recomienda configurar el par&aacute;metro DenyUsers</p>\n";
+
+							if ($miidioma eq "es") {
+							print "\nNo existe el parámetro DenyUsers no existe en el archivo /etc/ssh/sshd_config\n";
+							print F "<p class=\"negativo\">Negativo: El parámetro DenyUsers no existe</p>\n";	
+							print R "<p>Se recomienda configurar el parámetro DenyUsers</p>\n";
+						}
+			 
+						else {
+							print "\nThe variable DenyUsers is not configured in /etc/ssh/sshd_config\n";
+							print F "<p class=\"negativo\">The variable DenyUsers is not configured in /etc/ssh/sshd_config</p>\n";
+							print R "<p>It is recommended to configure the DenyUsers parameter in the file</p>\n";
+						}
+	
+	
 	}
 	else 
 	{
@@ -125,9 +161,19 @@ print "-" x 100;
 	$CHECKDenyGroups=`grep "^DenyGroups" /etc/ssh/sshd_config`;
     if ($CHECKDenyGroups eq "")
 	{
-	print BOLD, RED  , "\nNo existe " . RESET, "El parámetro DenyGroups no existe en el archivo /etc/ssh/sshd_config\n";
-	print F "<p class=\"negativo\">Negativo: El par&aacute;metro DenyGroups no existe</p>\n";	
-	print R "<p>Se recomienda configurar el par&aacute;metro DenyGroups</p>\n";
+	
+							if ($miidioma eq "es") {
+							print "\nNo existe el parámetro DenyGroups no existe en el archivo /etc/ssh/sshd_config\n";
+							print F "<p class=\"negativo\">Negativo: El parámetro DenyGroups no existe</p>\n";	
+							print R "<p>Se recomienda configurar el parámetro DenyGroups</p>\n";
+						}
+			 
+						else {
+							print "\nThe variable DenyGroups is not configured in /etc/ssh/sshd_config\n";
+							print F "<p class=\"negativo\">The variable DenyGroups is not configured in /etc/ssh/sshd_config</p>\n";
+							print R "<p>It is recommended to configure the DenyGroups parameter in the file</p>\n";
+						}
+	
 	}
 	else 
 	{

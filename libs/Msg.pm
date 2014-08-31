@@ -20,7 +20,7 @@ use Encode qw(decode_utf8);
  our @msg = (  
         [
             "<h1>Análisis de seguridad - Informe</h1>", #fase - msg0
-            "<p>Cabe aclarar que si algunos items estan vacios significa que la configuración esta correcta. <a href=\"$Hostname-recomendaciones.html\"><button type=\"button\" class=\"button-warning pure-button\">Recomendaciones</button></a></p>",#fase - msg1
+            "<p>Cabe aclarar que si algunos items estan vacios significa que la configuración esta correcta. <a href=\"$Hostname-recomendations.html\"><button type=\"button\" class=\"button-warning pure-button\">Recomendaciones</button></a></p>",#fase - msg1
 			"<h1>Análisis de seguridad - Recomendaciones</h1>\n",#fase - msg2
 			"\nFase 0.0 -- Información del Equipo\n",#fase0 - msg3
 			"<h3>Fase 0.0 -- Información del Equipo</h3>",#fase0 - msg4

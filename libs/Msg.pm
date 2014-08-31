@@ -20,16 +20,16 @@ use Encode qw(decode_utf8);
  our @msg = (  
         [
             "<h1>Análisis de seguridad - Informe</h1>", #fase - msg0
-            "<p>Cabe aclarar que si algunos items estan vacios significa que la configuración esta correcta. <a href=\"$Hostname-recomendations.html\"><button type=\"button\" class=\"button-warning pure-button\">Recomendaciones</button></a></p>",#fase - msg1
+            "<p>Cabe aclarar que si algunos items están vacíos significa que la configuración está correcta. <a href=\"$Hostname-recomendations.html\"><button type=\"button\" class=\"button-warning pure-button\">Recomendaciones</button></a></p>",#fase - msg1
 			"<h1>Análisis de seguridad - Recomendaciones</h1>\n",#fase - msg2
 			"\nFase 0.0 -- Información del Equipo\n",#fase0 - msg3
 			"<h3>Fase 0.0 -- Información del Equipo</h3>",#fase0 - msg4
-			"\nFase 1.0 -- Informacion de los usuarios del sistema\n",#fase1 - msg5
-			"<h3>Fase 1.0 -- Informacion de los usuarios del sistema</h3>\n", #fase1 - msg6
+			"\nFase 1.0 -- Información de los usuarios del sistema\n",#fase1 - msg5
+			"<h3>Fase 1.0 -- Información de los usuarios del sistema</h3>\n", #fase1 - msg6
 			"Información de los usuarios del sistema", #fase1 - msg7
 			"<p>Se recomienda analizar si los usuarios listado son los correctos</p>",#fase1 - msg8
-			"\nFase 1.1 -- Comprobacion de Usuarios/Grupos \n",#fase1.1 - msg9
-			"<h3>Fase 1.1 -- Comprobacion de Usuarios/Grupos</h3>\n",#fase1.1 - msg10
+			"\nFase 1.1 -- Comprobación de Usuarios/Grupos \n",#fase1.1 - msg9
+			"<h3>Fase 1.1 -- Comprobación de Usuarios/Grupos</h3>\n",#fase1.1 - msg10
 			"<p>Recomendamos analizar si los grupos creados y la asignación de los usuarios es la requerida.\n</p>\n",#fase1.1 - msg11
 			"\nFase 1.2 -- Verificar que no existan cuentas sin contraseña\n",#fase1.2 - msg12
 			"<h3>Fase 1.2 -- Verificar que no existan cuentas sin contraseña</h3>\n",#fase1.2 - msg13
@@ -37,9 +37,9 @@ use Encode qw(decode_utf8);
 			"<h3>Fase 1.3 -- Verificar que no existan usuarios con ID 0</h3>\n",#fase1.3 - msg15
 			"\nFase 1.4 -- Verificación del archivo login.defs\n",#fase1.4 - msg16
 			"<h3>Fase 1.4 -- Verificación del archivo login.defs</h3>\n",#fase1.4 - msg17
-			"\nFase 1.5 -- Ultimos usuarios agregados\n",#fase1.5 - msg18
-			"<h3>Fase 1.5 -- Ultimos usuarios agregados</h3>\n",#fase1.5 - msg19
-			"<p>En el caso que existan usuarios agregados en el ultimo periodo, verificar que haya sido un requerimiento del servicio a prestar.</p>",#fase1.5 - msg20
+			"\nFase 1.5 -- Últimos usuarios agregados\n",#fase1.5 - msg18
+			"<h3>Fase 1.5 -- Últimos usuarios agregados</h3>\n",#fase1.5 - msg19
+			"<p>En el caso que existan usuarios agregados en el último periodo, verificar que haya sido un requerimiento del servicio a prestár.</p>",#fase1.5 - msg20
 			"\nFase 1.6 -- Configuración PAM\n",#fase1.6 - msg21
 			"<h3>Fase 1.6 -- Configuración PAM</h3>\n",#fase1.6 - msg22
 			"\nEl parámetro MINLEN no se encuentra configurado\n",#fase1.6 - msg23
@@ -63,10 +63,10 @@ use Encode qw(decode_utf8);
 			"\nEl parámetro DIFOK no se encuentra configurado\n",#fase1.6 - msg41
 			"<p class=\"negativo\">Negativo: El parámetro DIFOK no se encuentra configurado</p>\n",#fase1.6 - msg42
 			"<p>Recomendamos configurar el parámetro DIFOK con el valor 2</p>\n",#fase1.6 - msg43
-			"\nFase 1.7 -- Ultimos usuarios conectados\n",#fase1.7 - msg44
+			"\nFase 1.7 -- Últimos usuarios conectados\n",#fase1.7 - msg44
 			"<h3>Fase 1.7 -- Últimos usuarios conectados</h3>\n",#fase1.7 - msg45
 			"<p>Verificar que las direcciones IP correspondan a los administradores del servidor</p>\n",#fase1.7 - msg46
-			"\nFase 1.8 -- Ultimos comandos ejecutados por los usuarios\n",#fase1.8 - msg47
+			"\nFase 1.8 -- Últimos comandos ejecutados por los usuarios\n",#fase1.8 - msg47
 			"<h3>Fase 1.8 -- Últimos comandos ejecutados por los usuarios</h3>\n",#fase1.8 - msg48
 			"<p>Verificar que los comandos ejecutados sean propios de la administración del servidor</p>\n",#fase1.8 - msg49
 			"\nFase 1.9 -- Relaciones de confianza\n",#fase1.9 - msg50
@@ -79,22 +79,22 @@ use Encode qw(decode_utf8);
 			"<h3>Fase 1.11 -- Verificar que no existan usuarios con Grupo ID 0</h3>\n",#fase1.11 - msg57
 			"\nFase 2.0 -- Eventos mediante Rsyslog - AUTHPRIV\n",#fase2 - msg58
 			"<h3>Fase 2.0 -- Eventos mediante Rsyslog - AUTHPRIV</h3>\n",#fase2 - msg59
-			"No esta habilitada la captura de eventos del sistema operativo mediante syslog\n",#fase2 - msg60
-			"<p class=\"negativo\">Negativo: No esta habilitada la captura de eventos del sistema operativo mediante syslog</p>\n",#fase2 - msg61
+			"No está habilitada la captura de eventos del sistema operativo mediante syslog\n",#fase2 - msg60
+			"<p class=\"negativo\">Negativo: No está habilitada la captura de eventos del sistema operativo mediante syslog</p>\n",#fase2 - msg61
 			"<p>Se recomienda habilitar la captura de eventos del sistema operativo mediante syslog</p>\n",#fase2 - msg62
 			"\nFase 2.1 -- Eventos mediante Syslog - AUTHPRIV\n",#fase2.1 - msg63
 			"<h3>Fase 2.1 -- Eventos mediante Syslog - AUTHPRIV</h3>\n",#fase2.1 - msg64
-			"No esta habilitada la captura de eventos del sistema operativo mediante Rsyslog\n",#fase2.1 - msg65
-			"<p class=\"negativo\">Negativo: No esta habilitada la captura de eventos del sistema operativo mediante Rsyslog</p>\n",#fase2.1 - msg66
+			"No está habilitada la captura de eventos del sistema operativo mediante Rsyslog\n",#fase2.1 - msg65
+			"<p class=\"negativo\">Negativo: No está habilitada la captura de eventos del sistema operativo mediante Rsyslog</p>\n",#fase2.1 - msg66
 			"<p>Se recomienda habilitar la captura de eventos del sistema operativo mediante Rsyslog</p>\n",#fase2.1 - msg67
 			"\nFase 3.0 -- Verify file and directory permissions\n",#fase3 - msg68
 			"<h3>Fase 3.0 -- Verificar permisos en archivos y directorios</h3>\n",#fase3 - msg69
-			"\nFase 3.1 -- Verificacion de Sticky Bit\n",#fase3.1 - msg70
-			"<h3>Fase 3.1 -- Verificacion de Sticky Bit</h3>\n",#fase3.1 - msg71
+			"\nFase 3.1 -- Verificación de Sticky Bit\n",#fase3.1 - msg70
+			"<h3>Fase 3.1 -- Verificación de Sticky Bit</h3>\n",#fase3.1 - msg71
 			"\nFase 3.2 -- Verificar archivos/directorios con permisos de escritura para todos los usuarios\n",#fase3.2 - msg72
 			"<h3>Fase 3.2 -- Verificar archivos/directorios con permisos de escritura para todos los usuarios</h3>\n",#fase3.2 - msg73
-			"\nFase 3.3 -- Verificacion de suid/gsid\n",#fase3.3 - msg74
-			"<h3>Fase 3.3 -- Verificacion de suid/gsid</h3>\n",#fase3.3 - msg75
+			"\nFase 3.3 -- Verificación de suid/gsid\n",#fase3.3 - msg74
+			"<h3>Fase 3.3 -- Verificación de suid/gsid</h3>\n",#fase3.3 - msg75
 			"\nFase 3.4 -- Archivos sin owner y group\n",#fase3.4 - msg76
 			"<h3>Fase 3.4 -- Archivos sin owner y group</h3>\n",#fase3.4 - msg77
 			"\nFase 4.0 -- Archivo de autenticacion ftp\n",#fase4 - msg78
@@ -103,14 +103,14 @@ use Encode qw(decode_utf8);
 			"<h3>Fase 5.0 -- Cierre de conexión automático</h3>\n",#fase5 - msg81
 			"\nEl archivo /etc/profile no contiene la variable TMOUT configurada\n",#fase5 - msg82
 			"<p class=\"negativo\">Negativo: El archivo /etc/profile no contiene la variable TMOUT configurada</p>\n",#fase5 - msg83
-			"<p>Recomendamos configurar el par&aacute;metro TMOUT en el archivo /etc/profile</p>\n",#fase5 - msg84
+			"<p>Recomendamos configurar el parámetroTMOUT en el archivo /etc/profile</p>\n",#fase5 - msg84
 			"\nFase 6.0 -- Banner personalizado\n",#fase6 - msg85
 			"<h3>Fase 6.0 -- Banner personalizado</h3>\n",#fase6 - msg86
 			"\nEl banner no se encuentra personalizado\n",#fase6 - msg87
 			"<p class=\"negativo\">El banner no se encuentra personalizado</p>\n",#fase6 - msg88
 			"<p>Recomendamos personalizar el banner del servidor</p>\n",#fase6 - msg89
-			"\nFase 7.0 -- Verificacion de la configuracion del servicio ssh\n",#fase7 - msg90
-			"<h3>Fase 7.0 -- Verificacion de la configuracion del servicio ssh</h3>\n",#fase7 - msg91
+			"\nFase 7.0 -- Verificación de la configuración del servicio ssh\n",#fase7 - msg90
+			"<h3>Fase 7.0 -- Verificación de la configuración del servicio ssh</h3>\n",#fase7 - msg91
 			"\nFase 8.0 -- SeLinux\n",#fase8 - msg92
 			"<h3>Fase 8.0 -- SeLinux</h3>\n",#fase8 - msg93
 			"\nSeLinux se encuentra desactivado\n",#fase8 - msg94
@@ -146,8 +146,8 @@ use Encode qw(decode_utf8);
 			"\nFase 17.1 -- Verificación de rutas\n",#fase17.1 - msg124
 			"<h3>Fase 17.1 -- Verificación de rutas</h3>\n",#fase17.1 - msg125
 			"<p>Se recomienda analizar si la configuración de las rutas es la correcta</p>\n",#fase17.1 - msg126
-			"\nFase 17.2 -- Verificacion configuración sysctl\n",#fase17.2 - msg127
-			"<h3>Fase 17.2 -- Verificacion configuración sysctl</h3>",#fase17.2 - msg128
+			"\nFase 17.2 -- Verificación configuración sysctl\n",#fase17.2 - msg127
+			"<h3>Fase 17.2 -- Verificación configuración sysctl</h3>",#fase17.2 - msg128
 			"\nFase 18.0 -- Verificar el nivel de inittab\n",#fase18 - msg129
 			"<h3>Fase 18.0 -- Verificar el nivel de inittab</h3>\n",#fase18 - msg130
 			"\nFase 18.1 -- Verificar que no este activo ctrlaltdel en inittab\n",#fase18.1 - msg131
